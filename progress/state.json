@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "curriculum_version": "1.0",
+  "weekly_hours": 20,
+  "current_mission": "W01",
+  "completed_weeks": [],
+  "attempts": [],
+  "skills": {},
+  "review_schedule": [],
+  "next_action": "Read W01 and run the first Python script with the teaching agent.",
+  "evidence_note": "No learner work has been assessed yet. The learning app has not been implemented."
+}

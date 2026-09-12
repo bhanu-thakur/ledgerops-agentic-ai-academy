@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+*.token
+*.key
+*.pem
+__pycache__/
+.venv/
+node_modules/
+.DS_Store
+*.sqlite
+*.sqlite3
+local-data/
+private-data/
+uploads/
+qa/
+*.log
