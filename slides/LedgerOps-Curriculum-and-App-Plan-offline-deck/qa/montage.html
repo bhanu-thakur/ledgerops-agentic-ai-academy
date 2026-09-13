@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Offline deck montage</title>
+<link rel="stylesheet" href="../theme/fonts.css">
+<link rel="stylesheet" href="../theme/tokens.css">
+<link rel="stylesheet" href="../theme/deck.css">
+<link rel="stylesheet" href="../theme/grid.css">
+<link rel="stylesheet" href="../theme/layouts.css">
+<link rel="stylesheet" href="../theme/improved.css">
+<style>
+  html, body { margin: 0; background: #8d8d86; }
+  .reveal { position: static; }
+  .slides {
+    display: grid;
+    grid-template-columns: repeat(4, 396px);
+    gap: 10px;
+    padding: 10px;
+    width: max-content;
+  }
+  .reveal .slides section {
+    width: 396px;
+    height: 223px;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    display: block;
+  }
+  .reveal .slides section .slide {
+    transform: scale(.2475);
+    transform-origin: top left;
+  }
+  .n {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    background: #1b1b1b;
+    color: #fff;
+    font: 600 11px/1 monospace;
+    padding: 4px 6px;
+  }
+</style>
+</head>
+<body class="variant-improved">
+<div class="reveal"><div class="slides"></div></div>
+<script src="../engine/format.js"></script>
+<script src="../engine/icons.js"></script>
+<script src="../engine/charts.js"></script>
+<script src="../content.js"></script>
+<script src="../content-transform.js"></script>
+<script src="../engine/render.js"></script>
+<script>
+  mountIcons();
+  build();
+  document.querySelectorAll(".slides section").forEach((section, index) => {
+    const tag = document.createElement("div");
+    tag.className = "n";
+    tag.textContent = `${index + 1}  ${DECK.slides[index].layout}`;
+    section.appendChild(tag);
+  });
+</script>
+</body>
+</html>

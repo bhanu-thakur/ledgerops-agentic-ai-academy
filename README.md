@@ -13,6 +13,10 @@ Designed around Zoho API dashboards, reliable integrations, accounting exception
 3. Give another agent the [teaching protocol](prompts/teaching-agent.md) and ask it to start W01.
 4. Save each session using the [session record](progress/session-template.md). Keep real progress in [state.json](progress/state.json).
 
+## Slideshow
+
+The [45-slide offline presentation](slides/LedgerOps-Curriculum-and-App-Plan-offline-deck/index.html) turns the curriculum and implementation plan into a guided briefing. Download the packaged ZIP from the `slides/` folder for a portable copy. The package includes its browser audit, rendered slides, montage and validation report.
+
 ## The practical route
 
 | Weeks | Outcome |

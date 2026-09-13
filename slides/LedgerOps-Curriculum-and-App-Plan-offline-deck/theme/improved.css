@@ -1,0 +1,107 @@
+/* Comparison variant: accessibility, editorial hierarchy, less card chrome. */
+
+.variant-improved {
+  --text-3: #5F6C67;
+  --accent: #AA4F24;
+  --accent-line: #D8AC91;
+}
+
+/* The variant uses a true title + explanatory subtitle on most slides.
+   Keep that hierarchy compact enough for the densest legal content. */
+.variant-improved .slide--footed {
+  row-gap: var(--sp-4);
+}
+
+.variant-improved .head__sub {
+  font-size: 26px;
+  line-height: 1.35;
+  margin-top: var(--sp-1);
+}
+
+.variant-improved .l-table .body {
+  justify-content: center;
+}
+
+.variant-improved .l-cards {
+  row-gap: var(--sp-3);
+}
+
+/* Steps used to be stripped to flat columns here, with a 3px top border
+   per card tying the row together. layouts.css now draws them flat by
+   default, with a rail behind the numbered circles doing that job for the
+   whole row -- so both overrides would only fight the base treatment. */
+
+/* Cards and stat tiles used to be stripped to flat editorial columns here
+   too. The component kit specifies them as raised tiles -- white ground, a
+   1px --line border, --shadow-card, and on the stat a 3px cap rule inside
+   the radius. The cap rule is the emphasis that survives a greyscale print,
+   and it needs an edge to sit inside, so those two overrides are gone and
+   the base treatment in layouts.css stands. Steps stay flat: the kit draws
+   them flat as well -- a rail with numbered circles, not a row of boxes. */
+.variant-improved .l-cards .card__t {
+  color: var(--text-1);
+}
+
+/* The shared hero note defaults to a dark-slide color; stats uses it on paper. */
+.variant-improved .slide--light .hero__note {
+  color: var(--text-2);
+}
+
+/* The final slide resolves the workshop instead of ending generically. */
+.variant-improved .closing__b {
+  max-width: 1320px;
+}
+
+.variant-improved .closing-lead {
+  color: var(--dtext-1);
+  font-size: var(--t-lead);
+  font-weight: 650;
+  line-height: var(--lh-title);
+  margin-bottom: var(--sp-5);
+}
+
+.variant-improved .closing-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+
+.variant-improved .closing-actions > div {
+  border-top: 2px solid var(--frost-line);
+  padding-top: var(--sp-3);
+}
+
+.variant-improved .closing-actions strong,
+.variant-improved .closing-actions span {
+  display: block;
+}
+
+.variant-improved .closing-actions strong {
+  color: var(--accent-dark);
+  font-size: var(--t-sub);
+  margin-bottom: var(--sp-1);
+}
+
+.variant-improved .closing-actions span {
+  color: var(--dtext-2);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+}
+
+.variant-improved .closing-org {
+  color: var(--dtext-2);
+  font-size: var(--t-label);
+  margin-top: var(--sp-6);
+}
+
+.variant-improved .l-closing .cover__foot {
+  margin-top: var(--sp-6) !important;
+}
+
+@media print {
+  .variant-improved .l-steps .step,
+  .variant-improved .l-cards .card,
+  .variant-improved .l-stats .stat {
+    box-shadow: none !important;
+  }
+}

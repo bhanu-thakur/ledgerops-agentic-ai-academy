@@ -1,0 +1,175 @@
+/* ============================================================
+   DESIGN TOKENS
+   The single source of truth for colour, type and rhythm.
+   Swap this file to re-skin every deck built on this engine.
+   ============================================================ */
+
+:root {
+  /* ---- Authoring canvas ---------------------------------- */
+  --canvas-w: 1600px;
+  --canvas-h: 900px;
+
+  /* ---- Surfaces ------------------------------------------ */
+  --ink:            #0E1F1A;   /* deep forest black - dark slides   */
+  --ink-raised:     #16302A;   /* raised panel on dark              */
+  --paper:          #F7F5F0;   /* warm paper - light slides         */
+  --paper-raised:   #FFFFFF;   /* card on light                     */
+  --paper-sunken:   #EFEBE2;   /* recessed band on light            */
+
+  /* ---- Text on light ------------------------------------- */
+  --text-1:         #14201C;
+  --text-2:         #4A5651;
+  --text-3:         #7C8783;
+
+  /* ---- Text on dark -------------------------------------- */
+  --dtext-1:        #F7F5F0;
+  --dtext-2:        #AFC0B8;
+  --dtext-3:        #74887F;
+
+  /* ---- Accent (chrome, rules, emphasis) ------------------ */
+  --accent:         #C2612F;   /* terracotta - earth, authority     */
+  --accent-dark:    #D2762F;   /* same hue stepped for dark surface */
+  --accent-wash:    #F6E7DC;
+  --accent-line:    #E2C4AC;
+
+  /* ---- Data series (validated: dataviz six-checks) --------
+     light surface #F7F5F0 - all pairs PASS
+     dark  surface #0E1F1A - all pairs PASS                    */
+  --s1:             #C2612F;   /* terracotta */
+  --s2:             #2A5FA8;   /* blue       */
+  --s3:             #158A6B;   /* green      */
+  --s1-dark:        #D2762F;
+  --s2-dark:        #4C8AD8;
+  --s3-dark:        #17997A;
+
+  /* ---- Chart chrome -------------------------------------- */
+  --grid:           #E4E0D6;
+  --baseline:       #CFC9BC;
+  --track:          #E7E3D9;   /* unfilled bar track */
+  --dgrid:          rgba(247, 245, 240, 0.10);
+  --dtrack:         rgba(247, 245, 240, 0.13);
+
+  /* ---- Hairlines ----------------------------------------- */
+  --line:           #E2DED4;
+  --line-strong:    #D3CDC0;
+  --dline:          rgba(247, 245, 240, 0.14);
+
+  /* ---- Typefaces -----------------------------------------
+     Self-hosted Noto Sans + Noto Sans Devanagari (see
+     fonts.css) - the pair specified by UX4G, the Government of
+     India design system. Embedded, so the deck renders
+     identically on Windows, macOS, Linux and GitHub Pages
+     rather than depending on Nirmala UI being installed.
+     Fallbacks are kept as a last resort only.
+
+     Font fallback resolves per glyph: Devanagari comes from
+     the Devanagari face, Latin and digits from Noto Sans.    */
+  --font-deva: "Noto Sans Devanagari Deck", "Noto Sans Deck", "Nirmala UI", sans-serif;
+  --font-ui:   "Noto Sans Deck", "Segoe UI", system-ui, sans-serif;
+  --font-num:  "Noto Sans Deck", "Segoe UI", system-ui, sans-serif;
+
+  /* ---- Type scale — modular, ratio 1.25 ------------------
+     Every size is a step on one geometric scale anchored at
+     the 24px body: 24 x 1.25^n. Sizes chosen by ear drift
+     apart and the deck stops feeling like one system; sizes
+     from a ratio stay in proportion at any distance.
+
+     step:   -2    -1    0    +1    +2    +3    +4    +5    +6    +7
+     px:    15.4  19.2   24    30   37.5  46.9  58.6  73.2  91.6  114
+
+     Body sits at 24px. Projected at 3m+, anything under 20px
+     is unreadable - the old deck ran ~13px, which was the
+     single biggest legibility failure.                       */
+  --t-hero:     143px;  /* +8  one giant number               */
+  --t-display:  92px;   /* +6  section title                  */
+  --t-cover:    73px;   /* +5  cover title                    */
+  --t-stat:     59px;   /* +4  stat-tile figure               */
+  --t-title:    47px;   /* +3  slide title                    */
+  --t-lead:     37px;   /* +2  statement / pull quote         */
+  --t-sub:      30px;   /* +1  subtitle, card heading         */
+  --t-body:     24px;   /*  0  body copy                      */
+  --t-label:    19px;   /* -1  card label, chart axis         */
+  --t-meta:     16px;   /* -2  caption, citation              */
+  --t-eyebrow:  15px;   /* -2  tracked uppercase kicker       */
+
+  /* ---- Line height ---------------------------------------
+     Devanagari carries matras above and below the baseline;
+     it needs materially more leading than Latin. Never let
+     Devanagari body text drop below 1.6.                     */
+  --lh-tight:   1.18;
+  --lh-display: 1.24;
+  --lh-heading: 1.36;
+  --lh-body:    1.75;   /* UX4G specifies 1.8 for Devanagari */
+  --lh-loose:   1.85;
+
+  /* ---- Tracking ------------------------------------------
+     Devanagari must never be negatively tracked - it breaks
+     conjunct forms. Only the Latin eyebrow gets tracking.    */
+  --tr-eyebrow: 0.16em;
+  --tr-none:    0;
+
+  /* ---- Baseline rhythm -----------------------------------
+     Every vertical gap is a multiple of 8px, so nothing lands
+     at an arbitrary height. The spacing scale below is built
+     entirely from it (8, 16, 24, 32, 40, 56, 80, 104).
+     Named -unit because --baseline is the chart axis colour. */
+  --baseline-unit: 8px;
+
+  /* ---- Spacing — strict 8px multiples --------------------- */
+  --sp-1:  8px;    /*  1x */
+  --sp-2:  16px;   /*  2x */
+  --sp-3:  24px;   /*  3x */
+  --sp-4:  32px;   /*  4x */
+  --sp-5:  40px;   /*  5x */
+  --sp-6:  56px;   /*  7x */
+  --sp-7:  80px;   /* 10x */
+  --sp-8:  104px;  /* 13x */
+
+  /* ---- Slide padding -------------------------------------
+     96px = 6% of the 1600px canvas, comfortably inside the
+     projection safe area (projectors crop the outer edge).
+     72px vertical keeps the top edge on the baseline.       */
+  --pad-x: 96px;
+  --pad-y: 72px;
+
+  /* ---- Radius & elevation --------------------------------
+     Restrained. Big radii read as consumer-app, not
+     institutional authority.                                 */
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* Three-layer shadow: a hairline contact edge, a close
+     shadow for weight, and a wide ambient one for depth.
+     Tinted toward the palette rather than neutral grey - a
+     grey shadow on warm paper reads dirty. */
+  --shadow-card:
+      0 0 0 1px rgba(20, 32, 28, 0.035),
+      0 2px 4px -1px rgba(20, 32, 28, 0.06),
+      0 12px 32px -14px rgba(20, 32, 28, 0.22);
+  --shadow-raised:
+      0 0 0 1px rgba(20, 32, 28, 0.04),
+      0 4px 8px -2px rgba(20, 32, 28, 0.07),
+      0 22px 46px -18px rgba(20, 32, 28, 0.30);
+  --shadow-dark:
+      0 0 0 1px rgba(247, 245, 240, 0.06),
+      0 18px 44px -20px rgba(0, 0, 0, 0.72);
+
+  /* ---- Atmosphere -----------------------------------------
+     Dark slides carry two soft radial tints. They are almost
+     invisible on their own, but they give backdrop-filter
+     something real to blur - without them a frosted panel is
+     just a flat translucent rectangle. */
+  --glow-1: rgba(210, 118, 47, 0.13);   /* accent, upper right */
+  --glow-2: rgba(76, 138, 216, 0.10);   /* cool, lower left    */
+
+  /* ---- Frosted surfaces ----------------------------------
+     The rgba fill is tuned to look correct on its own, because
+     backdrop-filter does not render in Chrome's print/PDF
+     path. Screen gets the blur; PDF degrades to solid. */
+  --frost-dark:   rgba(247, 245, 240, 0.07);
+  --frost-dark-2: rgba(247, 245, 240, 0.10);
+  --frost-line:   rgba(247, 245, 240, 0.16);
+  --frost-blur:   blur(16px) saturate(140%);
+}

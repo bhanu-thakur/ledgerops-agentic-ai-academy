@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "source": "deliverables/LedgerOps-Curriculum-and-App-Plan.docx",
+  "sourceSha256": "371d6c8c2a882f96c38b64c96175e701a6737e95842d362d69429ff3ef09b3e7",
+  "output": "slides/LedgerOps-Curriculum-and-App-Plan-offline-deck",
+  "sourceSlides": null,
+  "outputSlideModels": 45,
+  "missingTokens": [],
+  "failures": [],
+  "warnings": [
+    "automatic source-token extraction supports PPTX; reconcile this source manually"
+  ],
+  "manualChecksStillRequired": [
+    "speaker notes, images, tables, and chart-series context",
+    "topic-title and meaningful-subtitle hierarchy",
+    "browser audit HARD 0",
+    "full-size slide inspection",
+    "montage comparison and visual-rubric score"
+  ]
+}

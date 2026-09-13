@@ -1,0 +1,1009 @@
+/* ============================================================
+   LAYOUT PRIMITIVES
+   Each primitive is a complete compositional answer to one
+   kind of content. Adding a layout means adding a block here
+   plus a builder in engine/render.js - nothing else.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. COVER
+   ------------------------------------------------------------ */
+.l-cover { justify-content: space-between; }
+
+.cover__top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+.cover__mark {
+  font-family: var(--font-ui);
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--dtext-2);
+  text-align: right;
+  line-height: 1.7;
+  padding: 14px 20px;
+}
+.cover__mark strong { color: var(--accent-dark); font-weight: 600; }
+
+.cover__title {
+  font-size: var(--t-cover);
+  font-weight: 700;
+  line-height: var(--lh-display);
+  color: var(--dtext-1);
+  max-width: 1180px;
+  text-wrap: balance;
+}
+.cover__year {
+  font-family: var(--font-num);
+  font-weight: 300;
+  color: var(--accent-dark);
+}
+
+.cover__rule {
+  width: 96px; height: 4px;
+  background: var(--accent-dark);
+  border-radius: 2px;
+  margin: var(--sp-5) 0 var(--sp-4);
+}
+
+.cover__org {
+  font-size: var(--t-sub);
+  line-height: var(--lh-heading);
+  color: var(--dtext-2);
+}
+
+.slide--light .cover__title { color: var(--text-1); }
+.slide--light .cover__org { color: var(--text-2); }
+.slide--light .cover__rule { background: var(--accent); }
+.slide--light .cover__year { color: var(--accent); }
+.slide--light .cover__mark { color: var(--text-2); }
+.slide--light .cover__mark strong { color: var(--accent); }
+.slide--light .cover__mark.frost {
+  background: var(--paper-sunken);
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+.cover__foot {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 1px solid var(--dline);
+  padding-top: var(--sp-3);
+  font-family: var(--font-ui);
+  font-size: var(--t-meta);
+  color: var(--dtext-3);
+}
+.slide--light .cover__foot { color: var(--text-3); border-top-color: var(--line); }
+
+.slide--light .closing__t { color: var(--text-1); }
+.slide--light .closing__b { color: var(--text-2); }
+.slide--light .closing__rule { background: var(--accent); }
+
+/* ------------------------------------------------------------
+   2. SECTION DIVIDER
+   ------------------------------------------------------------ */
+.l-section { justify-content: center; }
+
+.section__num {
+  font-family: var(--font-deva);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+  padding: 9px 20px;
+  border-radius: var(--r-pill);
+}
+.section__title {
+  font-size: var(--t-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  color: var(--dtext-1);
+  margin-top: var(--sp-3);
+  max-width: 1200px;
+}
+.section__sub {
+  font-size: var(--t-sub);
+  line-height: var(--lh-body);
+  color: var(--dtext-2);
+  margin-top: var(--sp-4);
+  max-width: 900px;
+}
+.section__rule {
+  width: 96px; height: 4px;
+  background: var(--accent-dark);
+  border-radius: 2px;
+  margin-top: var(--sp-5);
+}
+
+/* One tick per section, filled up to this one. A divider that
+   only says "04" makes the reader remember how many there are;
+   a divider that shows the run does not. */
+.section__steps { display: flex; gap: 6px; align-items: center; }
+.section__steps i {
+  width: 24px; height: 3px; border-radius: var(--r-sm);
+  background: rgba(247, 245, 240, 0.16);
+}
+.section__steps i.is-done { background: var(--accent-dark); }
+.slide--light .section__steps i { background: var(--track); }
+.slide--light .section__steps i.is-done { background: var(--accent); }
+.section__head { display: flex; align-items: center; gap: var(--sp-3); }
+
+/* ------------------------------------------------------------
+   3. STATEMENT  (one idea, large)
+   ------------------------------------------------------------ */
+.l-statement .body { justify-content: center; }
+
+.statement__text {
+  font-size: var(--t-lead);
+  font-weight: 400;
+  line-height: var(--lh-loose);
+  max-width: 1260px;
+}
+.slide--dark .statement__text { color: var(--dtext-1); }
+
+/* Icon chip - pattern from the Card Atlas design system: a
+   soft tinted tile carrying a single stroke icon. Reads as a
+   deliberate mark rather than a stray glyph. */
+.statement__mark {
+  width: 60px; height: 60px;
+  border-radius: var(--r-lg);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-4);
+}
+.statement__mark .ic { width: 29px; height: 29px; stroke-width: 1.6; }
+.slide--dark .statement__mark {
+  background: rgba(210, 118, 47, 0.14);
+  border-color: rgba(210, 118, 47, 0.32);
+  color: var(--accent-dark);
+}
+
+.statement__cites { margin-top: var(--sp-5); display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+
+/* ------------------------------------------------------------
+   4. HERO STAT  (one giant number)
+   ------------------------------------------------------------ */
+.l-hero .body { justify-content: center; }
+
+.hero__figure {
+  font-family: var(--font-num);
+  font-size: var(--t-hero);
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.015em;
+  color: var(--dtext-1);
+  font-variant-numeric: tabular-nums;
+}
+.slide--light .hero__figure { color: var(--text-1); }
+.hero__figure em { color: var(--accent-dark); font-style: normal; }
+
+.hero__unit {
+  font-size: var(--t-sub);
+  font-weight: 400;
+  color: var(--accent-dark);
+  margin-top: var(--sp-3);
+}
+.hero__label {
+  font-size: var(--t-lead);
+  font-weight: 400;
+  line-height: var(--lh-heading);
+  color: var(--dtext-1);
+  margin-top: var(--sp-2);
+  max-width: 1000px;
+}
+.hero__note {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--dtext-2);
+  margin-top: var(--sp-4);
+  max-width: 860px;
+  border-left: 2px solid var(--dline);
+  padding-left: var(--sp-3);
+}
+
+/* Supporting figures alongside the hero, on a frosted panel -
+   the one place in the deck where a big dark field, a colour
+   glow and a floating surface all coincide. */
+.hero__split { display: flex; gap: var(--sp-7); align-items: flex-end; }
+.hero__aside {
+  display: flex; flex-direction: column; gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  align-self: stretch; justify-content: center;
+}
+.hero__aside .mini__fig {
+  font-family: var(--font-num);
+  font-size: 42px; font-weight: 300; line-height: 1.05;
+  color: var(--dtext-1); font-variant-numeric: tabular-nums;
+}
+.hero__aside .mini__lab {
+  font-size: var(--t-label); color: var(--dtext-2); margin-top: 2px;
+}
+
+/* ------------------------------------------------------------
+   5. STAT ROW
+   ------------------------------------------------------------ */
+/* Grids stretch to fill the body. Content sits at the top of
+   each cell and the citation is pinned to the bottom, so a
+   slide never leaves a void under its content. */
+.stats { display: grid; gap: var(--grid-gutter); flex: 1 1 auto; align-content: stretch; grid-auto-rows: 1fr; }
+.stats--3 { grid-template-columns: repeat(3, 1fr); }
+.stats--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Stacked variant for a split's left column - three figures
+   read vertically, so the card padding has to come down. */
+.stats--stack { grid-template-columns: 1fr; gap: var(--sp-2); }
+.stats--stack .stat { padding: 18px var(--sp-4); }
+.stats--stack .stat__fig { font-size: 44px; }
+.stats--stack .stat__lab { font-size: var(--t-label); margin-top: 2px; }
+.stats--stack .stat__note { padding-top: var(--sp-1); }
+
+.stat {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;   /* keeps the cap rule inside the radius */
+}
+/* A 3px cap across the top: accent on the tile that matters,
+   track on the rest. Emphasis that survives a greyscale print,
+   where the accent figure alone would not. */
+.stat::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--track);
+}
+.stat--accent::before { background: var(--accent); }
+.slide--dark .stat::before { background: var(--dtrack); }
+.slide--dark .stat--accent::before { background: var(--accent-dark); }
+
+.stat__deltarow {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-top: var(--sp-2);
+}
+.stat__delta {
+  font-size: var(--t-eyebrow); font-weight: 600;
+  border-radius: var(--r-sm);
+  padding: 3px 10px; white-space: nowrap;
+}
+.stat__deltanote { font-size: var(--t-meta); color: var(--text-3); }
+.slide--dark .stat__deltanote { color: var(--dtext-3); }
+.slide--dark .stat__delta--neutral {
+  color: var(--accent-dark); background: rgba(210, 118, 47, 0.14);
+  border: 1px solid rgba(210, 118, 47, 0.32);
+}
+.stat__delta--good    { color: var(--s3);     background: #E4F0EA; }
+.stat__delta--bad     { color: var(--accent); background: var(--accent-wash); }
+.stat__delta--neutral { color: var(--s2);     background: #E3EAF5; }
+.slide--dark .stat {
+  background: var(--ink-raised); border-color: var(--dline); box-shadow: none;
+}
+
+.stat__fig {
+  font-family: var(--font-num);
+  font-size: var(--t-stat);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+.slide--dark .stat__fig { color: var(--dtext-1); }
+.stat--accent .stat__fig { color: var(--accent); }
+.slide--dark .stat--accent .stat__fig { color: var(--accent-dark); }
+
+.stat__unit {
+  font-family: var(--font-ui);
+  font-size: var(--t-meta); font-weight: 600;
+  color: var(--text-3); margin-top: var(--sp-1);
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.slide--dark .stat__unit { color: var(--dtext-3); }
+
+.stat__lab {
+  font-size: var(--t-label);
+  line-height: var(--lh-heading);
+  color: var(--text-2);
+  margin-top: var(--sp-2);
+}
+.slide--dark .stat__lab { color: var(--dtext-2); }
+
+.stat__note {
+  font-size: var(--t-meta); color: var(--text-3);
+  margin-top: auto; padding-top: var(--sp-3);
+}
+.slide--dark .stat__note { color: var(--dtext-3); }
+
+/* ------------------------------------------------------------
+   6. STEPS  (numbered process - max 4 per slide)
+   ------------------------------------------------------------ */
+/* Cards size to their content and the row centres. Stretching
+   a short card to full height only moves the void inside it. */
+/* A 1.5px rail behind the row at the circles' centre line, so
+   three cards read as one sequence rather than three cards. */
+.steps { display: grid; gap: var(--grid-gutter); flex: 1 1 auto;
+         align-content: center; align-items: stretch; }
+.steps--2 { grid-template-columns: repeat(2, 1fr); }
+.steps--3 { grid-template-columns: repeat(3, 1fr); }
+.steps--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* A step is a flat column -- circle, title, bullets -- not a box. The
+   sequence is carried by the rail behind the circles, so card chrome here
+   would draw three unrelated containers over one continuous thing. */
+.step { display: flex; flex-direction: column; min-width: 0; position: relative; }
+/* The rail is drawn per column and bridged across the gutter, rather than
+   once across the container: .steps centres its rows, so a rail measured
+   from the container's top edge lands nowhere near the circles. Each
+   segment starts at the column's left edge and the numbered circle, which
+   paints later, covers its own stretch. */
+.step::before {
+  content: ""; position: absolute; top: 28px; left: 0;
+  right: calc(-1 * var(--grid-gutter)); height: 1.5px;
+  background: var(--line);
+}
+.step:last-child::before { right: 0; }
+/* The number sits in a 56px washed circle at the head of the column. Its
+   centre line is where the rail runs, which is what ties the row together. */
+.step__n {
+  width: 56px; height: 56px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-num);
+  font-size: 26px; font-weight: 600; line-height: 1;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: 50%;
+  font-variant-numeric: tabular-nums;
+}
+/* The step you are on inverts, so the sequence has a head. */
+.step--now .step__n {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--paper-raised);
+}
+.step__t { margin-top: var(--sp-2); }
+.step__list { margin-top: 12px; gap: var(--sp-1); }
+.step__list li::before { top: 11px; }
+.step__t {
+  font-size: var(--t-sub); font-weight: 700;
+  line-height: var(--lh-heading);
+  margin-top: var(--sp-2);
+  color: var(--text-1);
+}
+.step__list { margin-top: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-2); }
+.step__list li {
+  font-size: var(--t-label);
+  line-height: var(--lh-body);
+  color: var(--text-2);
+  padding-left: 18px;
+  position: relative;
+}
+.step__list li::before {
+  content: ""; position: absolute; left: 0; top: 13px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-line);
+}
+.step__cite { margin-top: auto; padding-top: var(--sp-3); }
+
+/* ------------------------------------------------------------
+   7. RULE CARDS  (legal provisions)
+   ------------------------------------------------------------ */
+.cards { display: grid; gap: var(--grid-gutter); flex: 1 1 auto; align-content: center; align-items: stretch; }
+.cards--2 { grid-template-columns: repeat(2, 1fr); }
+.cards--3 { grid-template-columns: repeat(3, 1fr); }
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-card);
+}
+.card__hd {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 18px;
+}
+/* Which way the card cuts, said once and in words — the colour
+   is a reinforcement, never the only carrier. */
+.card__stance {
+  font-size: var(--t-eyebrow); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  border-radius: var(--r-sm); padding: 4px 10px; white-space: nowrap;
+}
+.card__stance { padding: 5px 10px; }
+.card__stance--for     { color: var(--s3);     background: #E4F0EA; }
+.card__stance--against { color: var(--text-3); background: var(--paper-sunken);
+                         border: 1px solid var(--line); }
+.card__t {
+  font-size: var(--t-sub); font-weight: 700;
+  line-height: var(--lh-heading); color: var(--text-1);
+}
+.card__b {
+  font-size: var(--t-label);
+  line-height: var(--lh-body);
+  color: var(--text-2);
+  margin-top: var(--sp-2);
+}
+.card__cite { margin-top: auto; padding-top: var(--sp-3); }
+
+/* ------------------------------------------------------------
+   8. SPLIT  (asymmetric two-column)
+   ------------------------------------------------------------ */
+/* Snapped to the 12-column grid, not to phi.
+   The golden ratio does not tile with 12 columns: 1.618fr
+   resolves to 7.20 columns, so the panel's left edge landed
+   mid-column and nothing aligned to the grid. 7:5 is the
+   nearest grid-true ratio (1.417) - both edges sit on real
+   column lines, which is what actually reads as symmetrical.
+   Keeping phi here would have meant keeping a grid that
+   nothing obeys. */
+.split { display: grid; grid-template-columns: repeat(var(--grid-cols), 1fr); gap: var(--grid-gutter); flex: 1 1 auto; align-items: stretch; }
+.split > *:nth-child(1) { grid-column: span 7; }
+.split > *:nth-child(2) { grid-column: span 5; }
+.split--rev  > *:nth-child(1) { grid-column: span 5; }
+.split--rev  > *:nth-child(2) { grid-column: span 7; }
+.split--even > * { grid-column: span 6; }
+.split--thirds > *:nth-child(1) { grid-column: span 8; }
+.split--thirds > *:nth-child(2) { grid-column: span 4; }
+.split > * { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+
+.panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  box-shadow: var(--shadow-card);
+  justify-content: center;
+}
+.panel { box-shadow: var(--shadow-raised); }
+.panel--sunken { background: var(--paper-sunken); box-shadow: none; }
+.panel__t {
+  font-size: var(--t-sub); font-weight: 700; color: var(--text-1);
+  line-height: var(--lh-heading);
+  display: flex; align-items: center; gap: 11px;
+}
+.panel__t .ic { width: 24px; height: 24px; color: var(--accent); }
+.panel__b { padding-left: 35px;
+  font-size: var(--t-body); line-height: var(--lh-body);
+  color: var(--text-2); margin-top: var(--sp-2);
+}
+
+.rows { display: flex; flex-direction: column; gap: var(--sp-3); }
+.row {
+  display: grid; grid-template-columns: 200px 1fr; gap: var(--sp-3);
+  align-items: start;
+}
+.row__n {
+  font-family: var(--font-num);
+  font-size: 26px; font-weight: 300; line-height: 1.35;
+  color: var(--accent); font-variant-numeric: tabular-nums;
+}
+/* One hairline between rows, so three facts read as one list
+   rather than three floating paragraphs. */
+.row + .row { border-top: 1px solid var(--line); padding-top: var(--sp-3); }
+.row__b { font-size: var(--t-label); line-height: var(--lh-body); color: var(--text-2); }
+.rows--dense .row__b { font-size: var(--t-label); }
+/* Two small figures under the takeaway: the supporting numbers
+   that would otherwise become two more rows of prose. */
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.mini {
+  background: var(--paper-raised); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 20px 22px;
+}
+.mini__f { font-family: var(--font-num); font-size: 34px; font-weight: 300;
+           line-height: 1.05; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.mini__l { font-size: var(--t-meta); color: var(--text-3); margin-top: 4px; }
+.row__b strong { color: var(--text-1); }
+
+/* ------------------------------------------------------------
+   9. CHART
+   ------------------------------------------------------------ */
+.chartwrap { display: grid; grid-template-columns: repeat(var(--grid-cols), 1fr); gap: var(--grid-gutter); flex: 1 1 auto; align-items: stretch; }
+.chartwrap > *:nth-child(1) { grid-column: span 8; }
+.chartwrap > *:nth-child(2) { grid-column: span 4; }
+.chartwrap--full > * { grid-column: span 12; }
+.chartbox { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+/* Fit the SVG to its box rather than letting width drive height.
+   With height:auto a wider column makes the chart proportionally
+   taller, which pushed the axis labels past the footer when the
+   chart went from 7 to 8 columns. preserveAspectRatio keeps it
+   undistorted inside whatever box it gets. */
+/* Absolutely fill the box: percentage heights do not resolve
+   inside a centred flex column, so a wider chart column made the
+   SVG proportionally taller and pushed the axis labels past the
+   footer. preserveAspectRatio keeps it undistorted. */
+.chartbox > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* Same trick one level down, for charts that carry a legend:
+   the legend is laid out normally and the plot fills the rest. */
+.chartplot { position: relative; flex: 1 1 auto; min-height: 0; }
+.chartplot > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* The donut is HTML (ring plus legend table), so it lays out
+   inside the plot box rather than being stretched to fill it. */
+.chartplot > .donut { position: absolute; inset: 0; }
+
+.takeaway {
+  background: var(--paper-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px var(--sp-4);
+  min-height: 0;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.takeaway__k {
+  font-family: var(--font-deva);
+  font-size: 17px; font-weight: 600;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 9px;
+}
+.takeaway__k .ic { width: 19px; height: 19px; }
+.takeaway__fig {
+  font-family: var(--font-num);
+  font-size: 46px; font-weight: 300; line-height: 1.05;
+  color: var(--text-1); margin-top: var(--sp-1);
+  font-variant-numeric: tabular-nums;
+}
+.takeaway__b {
+  font-size: var(--t-label); line-height: var(--lh-body);
+  color: var(--text-2); margin-top: var(--sp-2);
+}
+
+/* Legend - always present for >= 2 series */
+/* ---- KPI tiles ---------------------------------------------
+   Four numbers, no axis. The one chart-adjacent primitive that
+   survives being read at arm's length off a printed page, which
+   is why the PDF path leans on it hardest.
+   Never five across on a 1600px canvas: the figure has to drop
+   below 40px to fit, and at that size it stops being a headline.
+   ------------------------------------------------------------ */
+.l-kpi .body { display: flex; flex-direction: column; justify-content: center; }
+.kpis { display: grid; gap: var(--sp-3); flex: 1 1 auto; align-content: center; }
+.kpis--2 { grid-template-columns: repeat(2, 1fr); }
+.kpis--3 { grid-template-columns: repeat(3, 1fr); }
+.kpis--4 { grid-template-columns: repeat(4, 1fr); }
+.kpi {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 26px 28px 22px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 0;
+}
+.kpi__lab {
+  font-family: var(--font-ui); font-size: var(--t-eyebrow); font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
+}
+.kpi__lab--deva { letter-spacing: var(--tr-none); text-transform: none; }
+.kpi__fig {
+  font-family: var(--font-num); font-size: 56px; font-weight: 300;
+  line-height: 1; color: var(--text-1); font-variant-numeric: tabular-nums;
+}
+.kpi__unit { font-size: var(--t-body); color: var(--text-3); margin-left: 6px; }
+.kpi__text { font-size: 40px; font-weight: 300; line-height: 1.1; color: var(--text-1); }
+.kpi__b { font-size: var(--t-eyebrow); line-height: 1.55; color: var(--text-2); }
+.kpi__deltarow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.kpi__delta {
+  font-size: var(--t-eyebrow); font-weight: 600; border-radius: var(--r-pill);
+  padding: 4px 10px; white-space: nowrap;
+}
+/* Colour is never the only carrier: the sign is in the string. */
+.kpi__delta--good    { color: var(--s3);     background: #E4F0EA; }
+.kpi__delta--bad     { color: var(--accent); background: var(--accent-wash); }
+.kpi__delta--neutral { color: var(--s2);     background: #E3EAF5; }
+.kpi__deltanote { font-size: var(--t-eyebrow); color: var(--text-3); }
+.kpi__foot { margin-top: auto; font-size: var(--t-eyebrow); font-weight: 600; color: var(--accent); }
+.kpi__spark { width: 100%; height: 40px; display: block; }
+.kpi__track {
+  height: 10px; border-radius: var(--r-pill);
+  background: var(--track); overflow: hidden;
+}
+.kpi__track i { display: block; height: 100%; background: var(--accent); border-radius: var(--r-pill); }
+
+.kpi--dark { background: var(--ink); border-color: transparent; }
+.kpi--dark .kpi__lab  { color: var(--dtext-3); }
+.kpi--dark .kpi__fig,
+.kpi--dark .kpi__text { color: var(--dtext-1); }
+.kpi--dark .kpi__unit { color: var(--dtext-3); }
+.kpi--dark .kpi__b    { color: var(--dtext-2); }
+.kpi--dark .kpi__foot { color: var(--accent-dark); }
+
+/* ---- Donut -------------------------------------------------
+   The legend is a table, not a set of leader lines: leaders
+   cross, and a crossing line reads as a relationship that is
+   not in the data.
+   ------------------------------------------------------------ */
+.donut { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; }
+.donut__svg { width: 280px; height: 280px; flex: 0 0 auto; }
+.donut__legend { display: flex; flex-direction: column; flex: 1 1 220px; min-width: 230px; }
+.donut__row {
+  display: grid; grid-template-columns: 14px 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid var(--line);
+}
+.donut__row:last-child { border-bottom: 0; }
+.donut__sw { width: 13px; height: 13px; border-radius: 3px; }
+.donut__lab { font-size: var(--t-meta); color: var(--text-2); }
+.donut__val { font-size: var(--t-meta); color: var(--text-1); font-variant-numeric: tabular-nums; }
+.donut__row.is-lead .donut__lab,
+.donut__row.is-lead .donut__val { font-weight: 600; color: var(--text-1); }
+/* The pie is always paired with its list: three slices carry identity by
+   colour alone, which is exactly what a legend is for. */
+.piewrap {
+  display: flex; gap: 32px; align-items: center; flex-wrap: wrap;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 28px 32px;
+}
+.pie { width: 180px; height: 180px; flex: 0 0 auto; }
+.pie__legend { flex: 1 1 180px; min-width: 170px; display: flex; flex-direction: column; gap: 9px; }
+.pie__cap {
+  font-size: var(--t-eyebrow); font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: 3px;
+}
+.pie__row { display: flex; align-items: center; gap: 10px; font-size: var(--t-eyebrow);
+            line-height: 1.5; color: var(--text-2); }
+.pie__sw { width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; }
+.pie__lab { flex: 1 1 auto; min-width: 0; }
+.pie__row b { color: var(--text-1); flex: 0 0 auto; }
+.pie__note { font-size: var(--t-eyebrow); line-height: 1.55; color: var(--text-3); margin-top: 5px; }
+
+.legend { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-2); }
+.legend__i { display: flex; align-items: center; gap: 9px; font-size: var(--t-label); color: var(--text-2); }
+.legend__sw { width: 13px; height: 13px; border-radius: 3px; flex: 0 0 auto; }
+
+/* Proportion bar - part-to-whole without a pie */
+.prop { display: flex; flex-direction: column; gap: var(--sp-2); }
+.prop__bar { display: flex; height: 36px; border-radius: var(--r-sm); overflow: hidden; gap: 2px; }
+.prop__seg { height: 100%; display: flex; align-items: center; padding-left: 14px; }
+.prop__seg span {
+  font-family: var(--font-ui); font-size: var(--t-label);
+  font-weight: 700; color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+.prop__cap { display: flex; justify-content: space-between; font-size: var(--t-meta); color: var(--text-3); }
+
+/* ------------------------------------------------------------
+   10. TABLE
+   ------------------------------------------------------------ */
+/* flex-basis is 0 0 auto, not 0 1 auto: a table taller than the body box used to
+   shrink its wrapper and paint straight over the source note below it (see the
+   dense-tier comment further down, which patched only the >12-row case). Refusing
+   to shrink pushes the note down instead, so an oversized table now fails
+   qa/audit.html as an OVERFLOW-Y rather than silently overlapping its own note. */
+.tablewrap { flex: 0 0 auto; min-height: 0; display: flex; flex-direction: column; }
+.tablewrap > table { flex: 0 0 auto; }
+
+table.dt {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+table.dt th {
+  font-size: var(--t-meta);
+  font-weight: 600;
+  text-align: right;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 12px 10px;
+  border-bottom: 1.5px solid var(--line-strong);
+  white-space: nowrap;
+}
+table.dt th:first-child,
+table.dt td:first-child { padding-left: 0; }
+/* Only the numeric columns are right-aligned. A label column sitting past a
+   rank gutter is still a label column, so it is aligned by what it holds
+   rather than by whether it happens to be the first cell. */
+table.dt th, table.dt td { text-align: left; }
+table.dt th.num, table.dt td.num { text-align: right; }
+table.dt td {
+  font-size: 18px;
+  color: var(--text-2);
+  padding: 12px;
+  line-height: 1.4;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.dt td:first-child { font-family: var(--font-deva); color: var(--text-1); white-space: normal; }
+table.dt tr.is-hl td {
+  background: var(--accent-wash);
+  color: var(--text-1);
+  font-weight: 600;
+}
+table.dt tr.is-total td {
+  border-top: 1.5px solid var(--line-strong);
+  border-bottom: none;
+  font-weight: 700;
+  color: var(--text-1);
+  padding-top: 18px;
+}
+table.dt .rank {
+  color: var(--text-3); font-size: 15px; width: 34px;
+  padding: 12px 12px 12px 0;
+}
+/* The wash alone disappears in greyscale, so the highlighted row also takes
+   a 3px accent edge in the gutter. Every first cell carries the same border
+   transparently, so highlighting a row never shifts the column. */
+table.dt td:first-child { border-left: 3px solid transparent; }
+table.dt tr.is-hl td:first-child { border-left-color: var(--accent); }
+table.dt tr.is-hl .rank { color: var(--accent); font-weight: 700; }
+
+/* Inline micro-bar: the track takes what is left of the column and the value
+   follows it, so a column of numbers gains a shape without becoming a second
+   chart and without the bar ever squeezing the figure. */
+table.dt td.bar { padding-left: 12px; padding-right: 0; }
+/* A width hint, because a micro-bar column left to auto layout in a wide
+   table gets squeezed to the track's 60px minimum and then steals the
+   difference from the label column, which starts wrapping. */
+table.dt th.bar { text-align: left; padding-right: 0; width: 17%; }
+.mcell { display: flex; align-items: center; gap: 12px; }
+.mbar {
+  flex: 1 1 auto; min-width: 60px; height: 10px;
+  border-radius: var(--r-pill); background: var(--track); overflow: hidden;
+}
+.mbar i { display: block; height: 100%; border-radius: var(--r-pill); background: var(--s2); }
+.mcell b { font-size: 18px; font-weight: 600; color: var(--text-1); white-space: nowrap; }
+tr.is-hl .mbar i { background: var(--s1); }
+tr.is-hl .mcell b { font-weight: 700; }
+
+/* Roomy tier — short decision tables should occupy the slide instead of
+   collapsing into a cramped horizontal strip. Text wraps by design so the
+   added breathing room improves comparison rather than widening columns. */
+table.dt--roomy th { padding-bottom: 14px; }
+table.dt--roomy td {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  white-space: normal;
+}
+table.dt--roomy-short td { padding-top: 24px; padding-bottom: 24px; }
+table.dt--roomy-medium td { padding-top: 18px; padding-bottom: 18px; }
+table.dt--roomy-wide td { padding-top: 10px; padding-bottom: 10px; }
+table.dt--roomy-tight td { padding-top: 6px; padding-bottom: 6px; }
+table.dt--roomy tr.is-total td { padding-top: 18px; }
+.l-table--roomy .tablenote { margin-top: var(--sp-4); }
+
+table.dt--compact th { font-size: 15px; padding: 0 8px 5px; }
+table.dt--compact td { font-size: 15px; padding: 3px 8px; }
+table.dt--compact tr.is-total td { padding-top: 20px; }
+
+/* Dense tier - tables past 12 rows.
+   .tablewrap is allowed to shrink but does not clip, so a table
+   taller than the body box does not scroll or truncate: it
+   paints straight over the source note below it. Capital Works
+   (Part 2) has 14 rows plus a subtotal and ran 155px past the
+   box, putting the note through the subtotal line.
+
+   The row rhythm and the note's very generous 100px gap are
+   where that space lives, so the dense tier reclaims it there
+   rather than shrinking the type, which would have cost
+   legibility on every table slide instead of just the tight
+   one. Type size is untouched. */
+table.dt--dense th { font-size: var(--t-eyebrow); padding: 0 10px 10px; }
+table.dt--dense th:first-child { padding-left: 20px; }
+table.dt--dense td { font-size: var(--t-meta); padding: 7px 10px; line-height: 1.4; }
+table.dt--dense td:first-child { font-size: 17px; padding-left: 20px; }
+table.dt--dense tr.is-total td { padding-top: 10px; padding-bottom: 10px; }
+table.dt--dense td.bar { padding-left: 10px; padding-right: 0; }
+table.dt--dense .mbar { min-width: 36px; height: 8px; }
+table.dt--dense .mcell b { font-size: var(--t-meta); }
+
+/* Past twelve rows the reader needs landing points, not a wall
+   of digits. A group announcement every few rows gives one,
+   and costs a single row of height each. Type size is
+   untouched at 15-17px; the space comes out of the rhythm. */
+table.dt tr.is-group td {
+  border-bottom: none; border-left: 0;
+  padding: 22px 0 8px;
+}
+table.dt tr.is-group .grp { display: flex; align-items: center; gap: 16px; }
+table.dt tr.is-group .grp__l {
+  font-family: var(--font-ui); font-size: var(--t-eyebrow); font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); white-space: nowrap;
+}
+table.dt tr.is-group .grp__l--deva { letter-spacing: var(--tr-none); text-transform: none; }
+table.dt tr.is-group .grp__r { flex: 1 1 auto; min-width: 12px; height: 1px; background: var(--accent-line); }
+table.dt tr.is-group .grp__t {
+  font-size: var(--t-eyebrow); color: var(--text-3); white-space: nowrap;
+}
+table.dt tr.is-sub td {
+  font-weight: 700; color: var(--text-1);
+  border-top: 1px solid var(--line-strong); border-bottom: none;
+}
+/* A fixed percentage cell, so no share value clips when the
+   micro-bar beside it takes the rest of the column. */
+table.dt td.share .mcell b { width: 38px; text-align: right; }
+
+/* The five-year total is the answer, so it stops being a row and becomes a
+   detached band: one spanning cell holding a rounded --ink panel. It is not
+   a run of tinted <td>s, because the answer is its own object and should not
+   inherit the column rhythm of the evidence above it. */
+table.dt tr.is-band td { border: 0; padding: 24px 0 0; }
+.band {
+  background: var(--ink); border-radius: var(--r-md);
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px 0;
+  padding: 18px 20px;
+}
+.band__l { font-size: 18px; font-weight: 700; color: var(--dtext-1); flex: 1 1 200px; min-width: 0; }
+.band__v {
+  font-size: 18px; color: var(--dtext-2); text-align: right;
+  flex: 0 0 auto; min-width: 110px; padding-left: 12px;
+  font-variant-numeric: tabular-nums;
+}
+/* One figure is the answer. It is the only one that changes weight. */
+.band__v--lead { font-size: var(--t-body); font-weight: 300; color: var(--accent-dark); min-width: 140px; }
+.band__v--last { font-weight: 600; color: var(--dtext-1); min-width: 80px; }
+
+.tablenote { font-size: var(--t-meta); color: var(--text-3); margin-top: var(--sp-3); flex: 0 0 auto; }
+.l-table--dense .tablenote { margin-top: 16px; padding-top: 10px; }
+
+/* Two-up table for the full 21-state register */
+.tablewrap--split { display: grid; grid-template-columns: var(--split-even); gap: 0 5%; align-items: start; }
+
+/* Full IFR/CFR source register, paged seven states at a time. */
+.tablewrap--detail { width: 100%; }
+table.dt--detail { table-layout: fixed; width: 100%; }
+table.dt--detail th,
+table.dt--detail td { font-family: var(--font-num); }
+table.dt--detail th { font-size: 15px; padding: 6px 5px; text-align: center; }
+table.dt--detail td { font-size: 15px; padding: 10px 6px; }
+table.dt--detail .state { width: 190px; text-align: left; font-family: var(--font-ui); }
+table.dt--detail td.total { font-weight: 700; color: var(--text-1); background: var(--paper-sunken); }
+table.dt--detail th.total { background: var(--ink-raised); }
+table.dt--detail tr.is-total td { padding-top: 10px; }
+
+/* ---- Spec matrix ------------------------------------------
+   The register table turned on its side: attributes down the
+   left, one column per option across. One column is tinted top
+   to bottom under a solid header, so the eye tracks the
+   recommendation down the page instead of re-finding it on
+   every row. Cells carry marks, not prose.
+   ------------------------------------------------------------ */
+table.mx { width: 100%; border-collapse: collapse; table-layout: fixed;
+           font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+table.mx th {
+  font-size: var(--t-meta); font-weight: 600; text-align: center;
+  color: var(--text-2); padding: 10px 6px;
+  border-bottom: 1.5px solid var(--line-strong);
+}
+table.mx th:first-child {
+  font-size: var(--t-eyebrow); text-align: left; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 6px 8px 8px 0;
+}
+table.mx th.is-pick {
+  font-weight: 700; color: var(--paper-raised);
+  background: var(--accent); border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+}
+table.mx td {
+  font-size: 17px; color: var(--text-2); text-align: center;
+  padding: 10px 6px; border-bottom: 1px solid var(--line);
+}
+table.mx td:first-child {
+  font-family: var(--font-deva); color: var(--text-1);
+  text-align: left; padding: 10px 8px 10px 0;
+}
+table.mx td.is-pick { background: var(--accent-wash); color: var(--text-1); font-weight: 700; }
+table.mx td.is-pick .ic { color: var(--accent); }
+table.mx .ic { width: 22px; height: 22px; stroke-width: 2.4; color: var(--text-2); }
+table.mx .absent { color: var(--text-3); }
+/* Past eight attributes the matrix outgrows the body box, exactly as the
+   table does past twelve rows. The space comes out of the row rhythm, never
+   out of the type: a matrix whose marks have shrunk is a matrix nobody can
+   scan down a column. */
+table.mx--dense th { padding: 8px 6px; }
+table.mx--dense th:first-child { padding: 4px 8px 6px 0; }
+table.mx--dense td { padding: 5px 6px; }
+table.mx--dense td:first-child { padding: 5px 8px 5px 0; }
+table.mx--dense tr.is-verdict td { padding-top: 10px; }
+table.mx--dense .ic { width: 20px; height: 20px; }
+
+/* The verdict closes the matrix, so its mark is the largest one on the slide. */
+table.mx tr.is-verdict td {
+  border-top: 1.5px solid var(--line-strong); border-bottom: 0;
+  padding-top: 14px; font-weight: 700; color: var(--text-1);
+}
+table.mx tr.is-verdict .ic { width: 26px; height: 26px; stroke-width: 2.6; }
+.l-table-detail .tablenote { margin-top: var(--sp-2); }
+
+/* ------------------------------------------------------------
+   11. TIMELINE
+   ------------------------------------------------------------ */
+/* The rail runs the full width behind every dot. It used to
+   stop at each item, which drew four short rules rather than
+   one timeline. The accent overlay marks how far along we are. */
+/* flex-start, not center: centring makes every item find its own vertical
+   position, so four dots that are meant to sit on one rail end up at four
+   different heights the moment the entries differ in length. */
+.tl { display: flex; flex: 1 1 auto; align-items: flex-start; gap: 0; position: relative; }
+.tl::before {
+  content: ""; position: absolute; left: 7px; right: 0; top: 7px;
+  height: 1.5px; background: var(--line);
+}
+.tl__i { flex: 1 1 0; position: relative; padding-right: var(--sp-4); }
+.tl__dot {
+  width: 15px; height: 15px; border-radius: 50%;
+  background: var(--accent); position: relative; z-index: 1;
+}
+/* Committed but not done: a ring, not a fill. Further out: a
+   grey ring and a quieter date, so a plan never reads as a fact. */
+.tl__i--next .tl__dot { background: var(--paper); box-shadow: inset 0 0 0 2.5px var(--accent); }
+.tl__i--far  .tl__dot { background: var(--paper); box-shadow: inset 0 0 0 2.5px var(--line-strong); }
+.tl__i--far  .tl__d   { color: var(--text-3); }
+.tl__line {
+  position: absolute; left: 7px; right: 0; top: 7px; height: 1.5px;
+  background: var(--accent-line);
+}
+.tl__i:last-child .tl__line,
+.tl__i--next ~ .tl__i .tl__line,
+.tl__i--far  .tl__line { display: none; }
+.tl__d {
+  font-family: var(--font-num); font-size: var(--t-sub); font-weight: 600;
+  color: var(--accent); margin-top: var(--sp-3);
+  font-variant-numeric: tabular-nums;
+}
+.tl__t { font-size: var(--t-body); font-weight: 700; color: var(--text-1); margin-top: var(--sp-1); line-height: var(--lh-heading); }
+.tl__b { font-size: var(--t-label); color: var(--text-2); margin-top: var(--sp-1); line-height: var(--lh-body); padding-right: var(--sp-3); }
+
+/* ------------------------------------------------------------
+   12. HIERARCHY  (committee architecture)
+   ------------------------------------------------------------ */
+.hier { display: flex; flex-direction: column; gap: 0; flex: 1 1 auto; justify-content: space-evenly; }
+.hier__i { display: grid; grid-template-columns: 200px 1fr; gap: var(--sp-4); align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.hier__i:last-child { border-bottom: none; }
+.hier__tag {
+  font-family: var(--font-ui); font-size: var(--t-meta); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-sm);
+  padding: 6px 12px; text-align: center;
+}
+.hier__tag--muted { color: var(--text-3); background: var(--paper-sunken); border-color: var(--line); }
+.hier__t { font-size: 25px; font-weight: 700; color: var(--text-1); line-height: var(--lh-heading); }
+.hier__b { font-size: 18px; color: var(--text-2); margin-top: 2px; line-height: 1.6; }
+
+/* ------------------------------------------------------------
+   13. CLOSING
+   ------------------------------------------------------------ */
+.l-closing { justify-content: center; }
+.closing__t {
+  font-size: var(--t-display); font-weight: 700;
+  line-height: var(--lh-tight); color: var(--dtext-1);
+}
+.closing__rule { width: 96px; height: 4px; background: var(--accent-dark); border-radius: 2px; margin: var(--sp-5) 0 var(--sp-4); }
+.closing__b { font-size: var(--t-sub); line-height: var(--lh-body); color: var(--dtext-2); max-width: 800px; }
+
+/* ---- Dense variants -------------------------------------
+   Merging slides raises the item count past what the default
+   sizing holds. These kick in automatically (render.js adds
+   the class) rather than being applied by hand per slide. */
+.hier--dense .hier__i { padding: 3px 0; grid-template-columns: 84px 1fr; gap: var(--sp-3); }
+.hier--dense .hier__t { font-size: 21px; }
+.hier--dense .hier__b { font-size: 16px; line-height: 1.5; margin-top: 1px; }
+.hier--dense .hier__tag { padding: 4px 8px; font-size: 15px; }
+
+.steps--4 .step { padding: var(--sp-3); }
+.steps--4 .step__n { font-size: 30px; }
+.steps--4 .step__t { font-size: 21px; margin-top: var(--sp-1); }
+.steps--4 .step__list { margin-top: var(--sp-2); gap: var(--sp-1); }
+.steps--4 .step__list li { font-size: 16px; line-height: 1.55; padding-left: 15px; }
+.steps--4 .step__list li::before { top: 10px; width: 5px; height: 5px; }
+.steps--4 .step__cite { padding-top: var(--sp-2); }
+
+.cards--2 .card__b { font-size: 18px; }
+
+/* Four rows or more. The kit draws three, at a 24px gap either side of the
+   divider; past three that rhythm runs the list off the slide, so the tier
+   halves the gap rather than shrinking the divider away — a list that has
+   lost its dividers has lost the thing that made it a list. */
+.rows--dense { gap: var(--sp-1); }
+.rows--dense .row + .row { padding-top: var(--sp-1); }
+.rows--dense .row__b { font-size: 21px; }
+.rows--dense .row__n { font-size: 23px; }
+.cards--2 .card { padding: 16px var(--sp-4); }
+.l-table .body { justify-content: center; } .l-split .body { justify-content: center; }

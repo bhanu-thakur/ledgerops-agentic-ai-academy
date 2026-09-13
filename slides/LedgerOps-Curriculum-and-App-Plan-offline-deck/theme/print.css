@@ -1,0 +1,14 @@
+/* Print / PDF export — one slide per page, no chrome. */
+.reveal .controls,
+.reveal .progress,
+.tip { display: none !important; }
+
+.slide { box-shadow: none !important; }
+
+/* Keep card borders visible when printers drop backgrounds. */
+@media print {
+  .stat, .step, .card, .panel, .takeaway {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

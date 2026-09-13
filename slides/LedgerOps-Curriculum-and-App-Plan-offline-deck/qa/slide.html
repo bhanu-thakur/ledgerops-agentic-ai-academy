@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Offline deck QA render</title>
+<link rel="stylesheet" href="../theme/fonts.css">
+<link rel="stylesheet" href="../theme/tokens.css">
+<link rel="stylesheet" href="../theme/deck.css">
+<link rel="stylesheet" href="../theme/grid.css">
+<link rel="stylesheet" href="../theme/layouts.css">
+<link rel="stylesheet" href="../theme/improved.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .slides { display: block; }
+  .slides section { display: block; margin: 0; }
+  body.grid .slides section { margin-bottom: 2px; }
+  .slide { transform-origin: top left; }
+</style>
+</head>
+<body class="variant-improved">
+<div class="reveal"><div class="slides"></div></div>
+
+<script src="../engine/format.js"></script>
+<script src="../engine/icons.js"></script>
+<script src="../engine/charts.js"></script>
+<script src="../content.js"></script>
+<script src="../content-transform.js"></script>
+<script src="../engine/render.js"></script>
+<script>
+  mountIcons();
+  build();
+
+  const q = new URLSearchParams(location.search);
+  const only = q.get("s");
+  const scale = parseFloat(q.get("scale") || "1");
+
+  if (q.get("grid")) document.body.classList.add("showgrid");
+  if (q.get("nofrost")) {
+    const st = document.createElement("style");
+    st.textContent = ".frost{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}";
+    document.head.appendChild(st);
+  }
+
+  const secs = [...document.querySelectorAll(".slides section")];
+  if (only !== null) {
+    secs.forEach((section, index) => {
+      if (index !== Number(only) - 1) section.remove();
+    });
+  }
+  if (scale !== 1) {
+    document.querySelectorAll(".slide").forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+    document.querySelectorAll(".slides section").forEach(el => {
+      el.style.height = `${900 * scale}px`;
+      el.style.width = `${1600 * scale}px`;
+      el.style.overflow = "hidden";
+    });
+  }
+  document.title = `ready-offline-deck-${secs.length}`;
+</script>
+</body>
+</html>

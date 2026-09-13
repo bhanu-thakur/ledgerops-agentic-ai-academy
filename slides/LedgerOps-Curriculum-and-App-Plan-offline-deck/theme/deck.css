@@ -1,0 +1,340 @@
+/* ============================================================
+   BASE + REVEAL OVERRIDES
+   ============================================================ */
+
+.reveal-viewport { background: var(--paper); }
+
+.reveal { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+  font-family: var(--font-deva);
+  font-size: var(--t-body);
+  font-weight: 400;
+  color: var(--text-1);
+  letter-spacing: var(--tr-none);
+}
+
+.reveal .slides { text-align: left; }
+
+/* Reveal centres slides by default; we author full-bleed. */
+.reveal .slides section {
+  padding: 0;
+  height: var(--canvas-h);
+  width: var(--canvas-w);
+  overflow: hidden;
+}
+
+.reveal ul, .reveal ol { display: block; margin: 0; padding: 0; list-style: none; }
+.reveal li { margin: 0; }
+.reveal p  { margin: 0; }
+.reveal strong { font-weight: 700; color: inherit; }
+.reveal em { font-style: normal; color: var(--accent); }
+
+/* ---- The slide frame ------------------------------------- */
+.slide {
+  position: relative;
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  padding: var(--pad-y) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.slide--light { background: var(--paper); color: var(--text-1); }
+
+/* Dark slides carry two soft radial tints. Nearly invisible on
+   their own; they exist so frosted panels have real colour
+   variation to blur, and they stop a large dark field from
+   reading as dead flat. */
+.slide--dark {
+  background:
+    radial-gradient(980px 620px at 88% -12%, var(--glow-1), transparent 62%),
+    radial-gradient(820px 540px at -8% 108%, var(--glow-2), transparent 60%),
+    var(--ink);
+  color: var(--dtext-1);
+}
+
+/* ---- Frosted surface -------------------------------------
+   Used only on dark slides, where the glow gives the blur
+   something to work with. On the flat light slides a frosted
+   panel would be indistinguishable from a solid one, so they
+   use elevation instead. */
+.frost {
+  background: var(--frost-dark);
+  border: 1px solid var(--frost-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-dark);
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .frost {
+    -webkit-backdrop-filter: var(--frost-blur);
+    backdrop-filter: var(--frost-blur);
+  }
+}
+
+/* ---- Kicker / eyebrow ------------------------------------
+   Devanagari must never be tracked or uppercased - it breaks
+   conjuncts and the shirorekha. Only Latin gets the treatment;
+   render.js tags each eyebrow by script.                      */
+.eyebrow {
+  font-size: var(--t-eyebrow);
+  font-weight: 600;
+  color: var(--text-3);
+}
+.eyebrow--deva {
+  font-family: var(--font-deva);
+  font-size: 17px;
+  letter-spacing: var(--tr-none);
+  text-transform: none;
+}
+.eyebrow--latin {
+  font-family: var(--font-ui);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+}
+.slide--dark .eyebrow { color: var(--dtext-3); }
+.eyebrow--accent { color: var(--accent); }
+
+/* ---- Slide head ------------------------------------------
+   Height is its own content; the grid row-gap provides the
+   space below it. A fixed min-height was tried to pin the body
+   to a constant line across slides, but it left a void under
+   short titles - and an uneven gap reads worse than a small
+   variation in where the body starts. */
+.head {
+  flex: 0 0 auto;
+}
+
+.head__title {
+  font-size: var(--t-title);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  margin-top: var(--sp-2);
+  color: var(--text-1);
+}
+.slide--dark .head__title { color: var(--dtext-1); }
+
+.head__sub {
+  font-size: var(--t-sub);
+  font-weight: 400;
+  line-height: var(--lh-heading);
+  color: var(--text-2);
+  margin-top: var(--sp-2);
+  max-width: 1180px;
+}
+.slide--dark .head__sub { color: var(--dtext-2); }
+
+/* The one recurring graphic device: a short accent rule.
+   Used only in the slide head - never as an edge stripe. */
+.head__rule {
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: var(--sp-3);
+  border-radius: 2px;
+}
+
+/* ---- Slide body ------------------------------------------ */
+.body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+
+
+/* ---- Footer ---------------------------------------------- */
+.foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-size: var(--t-meta);
+  color: var(--text-3);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.slide--dark .foot { color: var(--dtext-3); border-top-color: var(--dline); }
+
+.foot__label { font-family: var(--font-deva); }
+.foot__num { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* A page number tells the reader where they are; it does not
+   tell them how much is left. The track does, at a glance and
+   without costing a single row of the body. */
+.foot__prog {
+  flex: 1 1 auto;
+  height: 2px;
+  background: var(--track);
+  margin: 0 var(--sp-4);
+  align-self: center;
+}
+.foot__prog i { display: block; height: 100%; background: var(--accent); }
+.slide--dark .foot__prog   { background: var(--dtrack); }
+.slide--dark .foot__prog i { background: var(--accent-dark); }
+
+/* ---- Vertical axis --------------------------------------
+   A content slide is three rows: head, body, foot. The body
+   takes 1fr; one row-gap sits above it and below it, so the
+   spacing is symmetric by construction rather than by
+   arithmetic, and it stays symmetric when a title wraps.
+
+   This replaces an absolutely-positioned footer at bottom:34px
+   (which did not match the 72px top margin) and a head
+   min-height that forced a 52px void under the title rule.
+   Measured before: 72 top vs 34 bottom margin, 84px above the
+   content vs 38px below. */
+.slide--footed {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: var(--sp-5);
+  align-content: stretch;
+}
+
+/* ---- Links -------------------------------------------------
+   A source link in a note was rendering in the browser's default
+   blue with a full underline -- the one thing on those slides
+   that belonged to no palette at all. It takes the accent and a
+   hairline rule at the text's own colour, so it reads as a
+   citation rather than as web furniture. It never changes size:
+   a link inside a note is still note-sized.
+   ------------------------------------------------------------ */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-line);
+}
+a:hover { border-bottom-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.slide--dark a { color: var(--accent-dark); border-bottom-color: rgba(210, 118, 47, 0.34); }
+.slide--dark a:hover { border-bottom-color: var(--accent-dark); }
+
+/* ---- Citation chip --------------------------------------- */
+.cite {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--t-meta);
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-sm);
+  padding: 3px 10px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.slide--dark .cite {
+  color: var(--accent-dark);
+  background: rgba(210, 118, 47, 0.13);
+  border-color: rgba(210, 118, 47, 0.34);
+}
+.cite--deva { font-family: var(--font-deva); }
+.cite--measured, .cite--modelled, .cite--contested {
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px;
+}
+.cite .ic { width: 16px; height: 16px; }
+
+/* Three confidence variants, because a deck that cites
+   everything identically is not really citing anything. The
+   border weight and style carry the distinction as well as the
+   colour, so it survives a greyscale print.
+     Measured  — solid accent, someone counted it
+     Modelled  — solid muted, we derived it from assumptions
+     Contested — dashed, the sources disagree                */
+.cite--measured  { color: var(--accent); background: var(--accent-wash);
+                   border: 1px solid var(--accent-line); }
+.cite--modelled  { color: var(--text-2); background: var(--paper-sunken);
+                   border: 1px solid var(--line); }
+.cite--contested { color: var(--text-2); background: var(--paper-sunken);
+                   border: 1px dashed var(--line-strong); }
+.slide--dark .cite--modelled,
+.slide--dark .cite--contested { color: var(--dtext-2); background: var(--frost-dark);
+                                border-color: var(--dline); }
+
+/* Pinned eyebrow — the same kicker as a chip, for a head that
+   sits on a busy ground and needs an edge to hold it. */
+.eyebrow--pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--accent-wash);
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+.slide--dark .eyebrow--pill {
+  background: rgba(210, 118, 47, 0.15);
+  color: var(--accent-dark);
+}
+
+/* Icon chip — 60px on a slide, 48px in a card header. */
+.chip {
+  width: 60px; height: 60px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-lg);
+  color: var(--accent);
+}
+.chip .ic { width: 29px; height: 29px; stroke-width: 1.6; }
+.chip--sm { width: 48px; height: 48px; border-radius: var(--r-lg); }
+.chip--sm .ic { width: 24px; height: 24px; }
+.chip--muted { background: var(--paper-sunken); border-color: var(--line); color: var(--text-2); }
+.chip--dark { background: var(--ink); border-color: transparent; color: var(--accent-dark); }
+
+/* ---- Reveal chrome --------------------------------------- */
+.reveal .progress { color: var(--accent); height: 3px; }
+.reveal .controls { color: var(--accent); }
+.reveal .slide-number {
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  right: 18px; bottom: 12px;
+}
+
+/* Overview mode needs the slide to shrink gracefully. */
+.reveal.overview .slide { box-shadow: 0 0 0 1px var(--line-strong); }
+
+/* ---- Icons (Card Atlas sprite pattern) --------------------- */
+.ic {
+  width: 1em; height: 1em;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+  vertical-align: -.13em;
+  flex: none;
+}
+
+/* ---- Chart text ------------------------------------------- */
+svg .ax  { font-family: var(--font-ui);   font-size: 15px; }
+svg .cat { font-family: var(--font-deva); font-size: 19px; }
+svg .val { font-family: var(--font-num);  font-size: 19px; font-variant-numeric: tabular-nums; }
+
+/* The axis numbers are bare, so the unit is stated once here
+   rather than repeated on every tick. Tracked and uppercased
+   by the renderer only when the string is Latin. */
+svg .axcap  { font-family: var(--font-ui); font-size: var(--t-eyebrow); font-weight: 600; }
+/* Direct end-of-line labels — these replace the legend on a
+   line chart, so they carry both identity and last value. */
+svg .endlab { font-family: var(--font-ui);  font-size: 17px; }
+svg .endval { font-family: var(--font-num); font-size: 15px; font-variant-numeric: tabular-nums; }
+/* The donut hole carries the total, so the reader never adds up. */
+svg .donut__fig  { font-family: var(--font-num); font-size: 52px; font-weight: 300;
+                   fill: var(--text-1); font-variant-numeric: tabular-nums; }
+svg .donut__unit { font-family: var(--font-ui);  font-size: 16px; fill: var(--text-3); }
+svg .donut__subj { font-family: var(--font-ui);  font-size: var(--t-eyebrow); font-weight: 600;
+                   fill: var(--accent); }
+
+.barg { cursor: default; outline: none; }
+.barg .bar { transition: opacity .12s ease; }
+.barg:hover .bar, .barg:focus-visible .bar { opacity: .78; }
+.barg:focus-visible .bar { stroke: var(--text-1); stroke-width: 2; }
+
+/* ---- Tooltip ---------------------------------------------- */
+.tip {
+  position: fixed; z-index: 60; pointer-events: none;
+  opacity: 0; transition: opacity .12s ease;
+  background: var(--ink); color: var(--dtext-1);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+  box-shadow: 0 6px 20px -6px rgba(14, 31, 26, .45);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tip.is-on { opacity: 1; }
+.tip b { font-family: var(--font-deva); font-weight: 600; }
+.tip span { color: var(--dtext-2); font-variant-numeric: tabular-nums; }

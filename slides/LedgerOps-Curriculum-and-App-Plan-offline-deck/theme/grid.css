@@ -1,0 +1,97 @@
+/* ============================================================
+   COMPOSITIONAL GRID
+   ------------------------------------------------------------
+   The equivalent of the camera's rule-of-thirds overlay: an
+   invisible lattice everything aligns to, so slides built by
+   different rules still share the same edges.
+
+   Canvas          1600 x 900
+   Margin          96 each side
+   Content width   1408
+   Columns         12, gutter 24  ->  column = 95.33px
+
+   Turn it on with qa/slide.html?grid=1 to see it.
+   ------------------------------------------------------------
+   TWO DIVISION SYSTEMS, USED FOR DIFFERENT JOBS
+
+
+   Splits are expressed in whole columns - 7+5 for a content
+   column beside a panel, 8+4 for a chart beside its takeaway.
+   Ratios that do not land on a column boundary were removed:
+   the golden section resolves to 7.20 columns, which put the
+   panel edge mid-column and made the grid meaningless.
+
+   Equal halves are used only for genuinely paired content
+   (the two-up table). Two equal columns of unequal importance
+   is the commonest way a slide reads as undesigned.
+   ============================================================ */
+
+:root {
+  --grid-cols: 12;
+  --grid-gutter: 24px;
+  --grid-width: 1408px;          /* 1600 - 2 x 96 */
+  --grid-col: 95.333px;
+
+  /* Division ratios */
+  --split-thirds: 2fr 1fr;
+  --split-even: 1fr 1fr;
+
+  /* Optical anchor lines, for reference and for the overlay.
+     Vertical rhythm is anchored on thirds; the head block
+     resolves at y=300 so every content slide starts its body
+     on the same line regardless of how tall its title ran. */
+  --third-x1: 533.33px;
+  --third-x2: 1066.67px;
+  --third-y1: 300px;
+  --third-y2: 600px;
+
+  /* The body of a content slide begins here. Fixing it rather
+     than letting it float under a variable-height title is
+     what makes consecutive slides feel like one system. */
+  --body-top: 300px;
+}
+
+/* A 12-column track, for layouts that want to span columns
+   explicitly rather than use a named ratio. */
+.grid12 {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gutter);
+}
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-12 { grid-column: span 12; }
+
+/* ------------------------------------------------------------
+   GRID OVERLAY  —  the camera-grid view.
+   Injected by qa/slide.html?grid=1; never part of the deck.
+   ------------------------------------------------------------ */
+.gridoverlay {
+  position: absolute; inset: 0; z-index: 90; pointer-events: none;
+  display: none;   /* press G, or qa/slide.html?grid=1 */
+}
+.showgrid .gridoverlay { display: block; }
+@media print { .gridoverlay { display: none !important; } }
+.gridoverlay .go-cols {
+  position: absolute; left: 96px; right: 96px; top: 0; bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+}
+.gridoverlay .go-cols i { background: rgba(210, 60, 60, 0.10); }
+.gridoverlay .go-line {
+  position: absolute; background: rgba(210, 60, 60, 0.55);
+}
+.gridoverlay .go-line.h { left: 0; right: 0; height: 1px; }
+.gridoverlay .go-line.v { top: 0; bottom: 0; width: 1px; }
+.gridoverlay .go-line.margin { background: rgba(20, 32, 28, 0.35); }
+.gridoverlay .go-tag {
+  position: absolute; font: 600 11px/1 monospace;
+  color: #fff; background: rgba(210, 60, 60, 0.9);
+  padding: 3px 5px; border-radius: 3px;
+}
