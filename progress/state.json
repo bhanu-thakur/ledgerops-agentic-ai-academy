@@ -7,6 +7,6 @@
   "attempts": [],
   "skills": {},
   "review_schedule": [],
-  "next_action": "Read W01 and run the first Python script with the teaching agent.",
-  "evidence_note": "No learner work has been assessed yet. The learning app has not been implemented."
+  "next_action": "Run practice/week-01/first_script.py, add a learner variable and print a third labelled line.",
+  "evidence_note": "The Week 1 practice workspace is ready. No learner output has been assessed yet, and no week is marked complete."
 }
