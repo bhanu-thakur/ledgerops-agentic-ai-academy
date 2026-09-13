@@ -1,6 +1,6 @@
 # LedgerOps Academy
 
-A practical path from beginner to accounting operations automation: **20 weeks, 20 hours per week, 400 hours**.
+A practical path from beginner to leading accounting operations automation with Codex or Claude Code: **20 weeks, 20 hours per week, 400 hours**.
 
 Designed around Zoho API dashboards, reliable integrations, accounting exception workflows and agentic AI, with research on Prudent Accountants and Zeni. Public company descriptions inform the scenarios; this is an independent learning programme, not company training or a verified account of either company's internal operations.
 
@@ -8,7 +8,7 @@ Designed around Zoho API dashboards, reliable integrations, accounting exception
 
 ## Start here
 
-1. Read the [complete plan](docs/MASTER-PLAN.md) or download the [Word document](deliverables/LedgerOps-Curriculum-and-App-Plan.docx).
+1. Read the [AI-assisted implementation mode](docs/06-ai-assisted-implementation-mode.md), then use the [complete plan](docs/MASTER-PLAN.md) as the reference.
 2. Open the [first-week schedule](docs/05-first-week-and-role-plan.md).
 3. Give another agent the [teaching protocol](prompts/teaching-agent.md) and ask it to start W01.
 4. Save each session using the [session record](progress/session-template.md). Keep real progress in [state.json](progress/state.json).

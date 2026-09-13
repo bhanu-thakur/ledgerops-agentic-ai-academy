@@ -7,6 +7,7 @@ const DATA = {
     "schema_version": "1.0",
     "programme": "LedgerOps Academy",
     "level": "beginner",
+    "learning_mode": "AI-assisted implementation lead: learner owns workflows, briefs, prompts, tests and operating decisions; Codex or Claude Code implements code",
     "hours_per_week": 20,
     "total_weeks": 20,
     "total_hours": 400,
@@ -21,29 +22,33 @@ const DATA = {
       {
         "week": 1,
         "id": "W01",
-        "title": "Understand the process and run your first script",
+        "title": "Choose and design an automation",
         "prerequisites": [],
         "concepts": [
-          "terminal and files",
-          "variables and functions",
-          "Git commits",
-          "invoice versus payment",
-          "process discovery"
+          "automation patterns",
+          "rules versus workflows versus agents",
+          "process discovery",
+          "implementation briefs",
+          "prompt flow",
+          "acceptance tests"
         ],
         "resource_ids": [
-          25,
+          18,
+          21,
           27
         ],
-        "build": "Create a repository workspace, run a Python script and describe a fictional client-to-invoice-to-payment process. Enter ten fictional invoices as dictionaries with string amounts. Print the invoice count and a labelled summary. Draw the handoffs, owner and exception path.",
-        "failure_lab": "Change a file path, remove a required field and introduce a syntax error. Read each error and explain the smallest repair.",
+        "build": "Review ten accounting automation patterns and score eight possible workflows. Use a fictional Zoho receivables dashboard as the default case. Map the current and improved process. Write an implementation brief and build, review, fix and handover prompts for Codex or Claude Code.",
+        "failure_lab": "Remove the process owner, leave a metric undefined, mix currencies and omit the failed-sync path. Explain why each gap would make the implementation unsafe or hard to review.",
         "deliverables": [
-          "first_script.py",
+          "automation-opportunity-map.md",
           "process-map.md",
-          "data-dictionary.md",
+          "implementation-brief.md",
+          "prompt-pack.md",
+          "review-checklist.md",
           "learning-log.md"
         ],
-        "gate": "Run the script from a fresh terminal, explain every line, distinguish an invoice from cash received and make a meaningful Git commit.",
-        "transfer_challenge": "Add a new fictional client and one new invoice without asking the tutor to write the change."
+        "gate": "The selected workflow has a clear trigger, user, inputs, rules, exceptions, output, permissions, tests, recovery path and owner. The build prompt gives a coding agent enough context to implement without guessing key business rules.",
+        "transfer_challenge": "Write a second brief for a missing-document workflow without copying the completed receivables brief."
       },
       {
         "week": 2,
@@ -898,8 +903,8 @@ const DECK = {
         "20 WEEKS",
         "400 HOURS"
       ],
-      "title": "Learn accounting",
-      "titleSub": "automation and agentic AI",
+      "title": "Lead accounting automation",
+      "titleSub": "with Codex or Claude Code",
       "org": "A practical course and app plan",
       "footL": "Beginner level · 20 hours each week",
       "footR": "13 September 2026"
@@ -911,7 +916,7 @@ const DECK = {
       "eyebrow": "WHAT THIS COURSE PREPARES YOU TO DO",
       "title": "Improve real work",
       "sub": "Learn how an accounting process works, automate the right parts and make failures easy to see.",
-      "text": "You will learn to map a process, connect approved systems, build clear dashboards, handle errors and use an AI agent only when it adds real value. Every result should be easy to check and easy for another person to run.",
+      "text": "You will learn to map a process, connect approved systems, build clear dashboards, handle errors and use an AI agent only when it adds real value. Every result should be easy to check and easy for another person to run. You will be judged on the brief, prompts, checks, recovery plan and business result—not on writing code by hand.",
       "cites": [
         "S1 · S2 · S3 · S4 · S5"
       ]
@@ -1033,13 +1038,13 @@ const DECK = {
       layout: "timeline",
       "section": "COURSE MAP",
       "eyebrow": "20 WEEKS",
-      "title": "From first script to job-ready projects",
-      "sub": "Build the data skills first. Add agents after you can test the system underneath them.",
+      "title": "From workflow idea to job-ready projects",
+      "sub": "You define and review the work. Codex or Claude Code builds the technical parts.",
       "items": [
         {
           "d": "W1–W5",
-          "t": "Basics",
-          "b": "Python, money, tests, SQL and clear metrics"
+          "t": "Design",
+          "b": "Use cases, process maps, money rules, tests and metrics"
         },
         {
           "d": "W6–W10",
@@ -1068,8 +1073,8 @@ const DECK = {
       layout: "table",
       "section": "START HERE",
       "eyebrow": "YOUR FIRST 20 HOURS",
-      "title": "Build one invoice script",
-      "sub": "Week one ends with working code, a simple process map and an explanation you can repeat.",
+      "title": "Design one useful automation",
+      "sub": "Week one ends with a clear workflow, build prompt and review plan for a fictional Zoho dashboard.",
       "cols": [
         "Day",
         "Hours",
@@ -1079,37 +1084,37 @@ const DECK = {
         [
           "Monday",
           2,
-          "Install Python and run your first command"
+          "Learn what dashboards, workflows and agents can do"
         ],
         [
           "Tuesday",
           2,
-          "Create ten fake invoices and print the count"
+          "Score eight accounting automation ideas"
         ],
         [
           "Wednesday",
           2,
-          "Map invoices, payments, owners and errors"
+          "Map the current process and common problems"
         ],
         [
           "Thursday",
           2,
-          "Break the script and repair two errors"
+          "Design the improved process and recovery path"
         ],
         [
           "Friday",
           2,
-          "Check and save the work with Git"
+          "Write the users, data, rules, output and limits"
         ],
         [
           "Saturday",
           5,
-          "Build and test an invoice summary"
+          "Write the build prompt and review the agent's plan"
         ],
         [
           "Sunday",
           5,
-          "Rebuild one part and explain every line"
+          "Test the result and prepare the handover checklist"
         ]
       ]
     },
@@ -1117,8 +1122,8 @@ const DECK = {
       layout: "table",
       "section": "20-WEEK COURSE",
       "eyebrow": "WEEKS 1 TO 5",
-      "title": "Learn the basics",
-      "sub": "Write small Python programs, work with money safely, test your code, use SQL and define useful numbers.",
+      "title": "Choose and define",
+      "sub": "Choose useful work, define safe money rules, direct Codex or Claude Code and verify the data.",
       "cols": [
         "Week",
         "Main task",
@@ -1128,9 +1133,9 @@ const DECK = {
       "rows": [
         [
           "W01",
-          "First script",
-          "Invoice list and process map",
-          "Run it and explain every line"
+          "Choose an automation",
+          "Process map, brief and prompt pack",
+          "Rules, tests and owner are clear"
         ],
         [
           "W02",
@@ -2100,8 +2105,8 @@ const DECK = {
     {
       layout: "closing",
       "tone": "dark",
-      "title": "Start with ten fake invoices",
-      "b": "Write the first script, break it on purpose and explain the fix. Small working steps will build the skills needed for dashboards, integrations and safe agents.",
+      "title": "Start with one clear workflow",
+      "b": "Define the result, rules, failure path and proof. Then direct Codex or Claude Code to build the smallest complete version.",
       "footL": "LedgerOps Academy",
       "footR": "30-slide course and app plan"
     }

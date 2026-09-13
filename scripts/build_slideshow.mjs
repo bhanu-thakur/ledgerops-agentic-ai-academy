@@ -10,7 +10,7 @@ const sources = JSON.parse(fs.readFileSync(path.join(root, "research", "sources.
 const cite = (...ids) => ids.map(id => `S${id}`).join(" · ");
 
 const weekSummaries = [
-  ["W01", "First script", "Invoice list and process map", "Run it and explain every line"],
+  ["W01", "Choose an automation", "Process map, brief and prompt pack", "Rules, tests and owner are clear"],
   ["W02", "Money rules", "Balance and overdue functions", "Match the hand-worked totals"],
   ["W03", "Files and tests", "Clean data and error report", "Show that bad rows are handled"],
   ["W04", "SQL basics", "Small accounting database", "Five reports match your checks"],
@@ -33,7 +33,7 @@ const weekSummaries = [
 ];
 
 const curriculumSlides = [
-  [1, 5, "Learn the basics", "Write small Python programs, work with money safely, test your code, use SQL and define useful numbers."],
+  [1, 5, "Choose and define", "Choose useful work, define safe money rules, direct Codex or Claude Code and verify the data."],
   [6, 10, "Build the first dashboard", "Build a local dashboard, learn HTTP and connect read-only Zoho Books and CRM data."],
   [11, 15, "Add safe AI", "Map workflows, extract data from documents, find policy evidence and build a small tool-using agent."],
   [16, 20, "Prove your work", "Test the agent, build two accounting projects, add a QuickBooks version and prepare the handover."]
@@ -57,13 +57,13 @@ const sourceSlides = [0, 9, 18, 27].map((start, index) => ({
 const slides = [
   {
     layout: "cover", tone: "dark", eyebrow: "LEDGEROPS ACADEMY", mark: ["20 WEEKS", "400 HOURS"],
-    title: "Learn accounting", titleSub: "automation and agentic AI", org: "A practical course and app plan",
+    title: "Lead accounting automation", titleSub: "with Codex or Claude Code", org: "A practical course and app plan",
     footL: "Beginner level · 20 hours each week", footR: "13 September 2026"
   },
   {
     layout: "statement", tone: "dark", section: "GOAL", eyebrow: "WHAT THIS COURSE PREPARES YOU TO DO",
     title: "Improve real work", sub: "Learn how an accounting process works, automate the right parts and make failures easy to see.",
-    text: "You will learn to map a process, connect approved systems, build clear dashboards, handle errors and use an AI agent only when it adds real value. Every result should be easy to check and easy for another person to run.",
+    text: "You will learn to map a process, connect approved systems, build clear dashboards, handle errors and use an AI agent only when it adds real value. Every result should be easy to check and easy for another person to run. You will be judged on the brief, prompts, checks, recovery plan and business result—not on writing code by hand.",
     cites: [cite(1, 2, 3, 4, 5)]
   },
   {
@@ -103,10 +103,10 @@ const slides = [
     total: ["Total", 20, "Repeat important skills after 1, 3, 7 and 14 days"]
   },
   {
-    layout: "timeline", section: "COURSE MAP", eyebrow: "20 WEEKS", title: "From first script to job-ready projects",
-    sub: "Build the data skills first. Add agents after you can test the system underneath them.",
+    layout: "timeline", section: "COURSE MAP", eyebrow: "20 WEEKS", title: "From workflow idea to job-ready projects",
+    sub: "You define and review the work. Codex or Claude Code builds the technical parts.",
     items: [
-      { d: "W1–W5", t: "Basics", b: "Python, money, tests, SQL and clear metrics" },
+      { d: "W1–W5", t: "Design", b: "Use cases, process maps, money rules, tests and metrics" },
       { d: "W6–W10", t: "Dashboard", b: "Local dashboard, HTTP, Zoho Books and CRM" },
       { d: "W11–W13", t: "Useful AI", b: "Workflow maps, document reading and policy search" },
       { d: "W14–W16", t: "Agents", b: "Tools, review steps, safety and testing" },
@@ -114,17 +114,17 @@ const slides = [
     ]
   },
   {
-    layout: "table", section: "START HERE", eyebrow: "YOUR FIRST 20 HOURS", title: "Build one invoice script",
-    sub: "Week one ends with working code, a simple process map and an explanation you can repeat.",
+    layout: "table", section: "START HERE", eyebrow: "YOUR FIRST 20 HOURS", title: "Design one useful automation",
+    sub: "Week one ends with a clear workflow, build prompt and review plan for a fictional Zoho dashboard.",
     cols: ["Day", "Hours", "Result"],
     rows: [
-      ["Monday", 2, "Install Python and run your first command"],
-      ["Tuesday", 2, "Create ten fake invoices and print the count"],
-      ["Wednesday", 2, "Map invoices, payments, owners and errors"],
-      ["Thursday", 2, "Break the script and repair two errors"],
-      ["Friday", 2, "Check and save the work with Git"],
-      ["Saturday", 5, "Build and test an invoice summary"],
-      ["Sunday", 5, "Rebuild one part and explain every line"]
+      ["Monday", 2, "Learn what dashboards, workflows and agents can do"],
+      ["Tuesday", 2, "Score eight accounting automation ideas"],
+      ["Wednesday", 2, "Map the current process and common problems"],
+      ["Thursday", 2, "Design the improved process and recovery path"],
+      ["Friday", 2, "Write the users, data, rules, output and limits"],
+      ["Saturday", 5, "Write the build prompt and review the agent's plan"],
+      ["Sunday", 5, "Test the result and prepare the handover checklist"]
     ]
   },
   ...curriculumSlides,
@@ -290,8 +290,8 @@ const slides = [
   },
   ...sourceSlides,
   {
-    layout: "closing", tone: "dark", title: "Start with ten fake invoices",
-    b: "Write the first script, break it on purpose and explain the fix. Small working steps will build the skills needed for dashboards, integrations and safe agents.",
+    layout: "closing", tone: "dark", title: "Start with one clear workflow",
+    b: "Define the result, rules, failure path and proof. Then direct Codex or Claude Code to build the smallest complete version.",
     footL: "LedgerOps Academy", footR: "30-slide course and app plan"
   }
 ];

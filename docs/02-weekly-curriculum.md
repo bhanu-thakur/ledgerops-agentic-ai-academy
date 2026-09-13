@@ -2,19 +2,19 @@
 
 Each week has 20 hours using the stated weekly allocation. Resource numbers refer to the Sources section. Complete the gate before progressing to a dependent mission. All outputs below are planned learner deliverables, not files already implemented in this release.
 
-### Week 1 Understand the process and run your first script
+### Week 1 Choose and design an automation
 
-Learn: terminal and files, variables and functions, Git commits, invoice versus payment, process discovery. Resources: S25, S27.
+Learn: automation patterns, rules versus workflows versus agents, process discovery, implementation briefs, prompt flow and acceptance tests. Resources: S18, S21, S27.
 
-Build: Create a repository workspace, run a Python script and describe a fictional client-to-invoice-to-payment process. Enter ten fictional invoices as dictionaries with string amounts. Print the invoice count and a labelled summary. Draw the handoffs, owner and exception path.
+Build: Review ten accounting automation patterns and score eight possible workflows. Use the fictional Zoho receivables dashboard as the default case. Map the current process and the improved process. Write an implementation brief and a build, review, fix and handover prompt for Codex or Claude Code.
 
-Break and test: Change a file path, remove a required field and introduce a syntax error. Read each error and explain the smallest repair.
+Break and test: Remove the process owner, leave a metric undefined, mix currencies and omit the failed-sync path. Explain why each gap would make the implementation unsafe or hard to review.
 
-Submit: first_script.py, process-map.md, data-dictionary.md, learning-log.md.
+Submit: automation-opportunity-map.md, process-map.md, implementation-brief.md, prompt-pack.md, review-checklist.md and learning-log.md.
 
-Pass when: Run the script from a fresh terminal, explain every line, distinguish an invoice from cash received and make a meaningful Git commit.
+Pass when: The selected workflow has a clear trigger, user, inputs, rules, exceptions, output, permissions, tests, recovery path and owner. The build prompt gives a coding agent enough context to implement without guessing key business rules.
 
-Independent variation: Add a new fictional client and one new invoice without asking the tutor to write the change.
+Independent variation: Write a second brief for a missing-document workflow without copying the completed receivables brief.
 
 ### Week 2 Control flow and reliable money calculations
 

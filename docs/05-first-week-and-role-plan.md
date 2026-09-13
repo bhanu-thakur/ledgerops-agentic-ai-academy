@@ -1,24 +1,24 @@
 ## 13 Start this week
 
-The first result is intentionally small: a script that reads fictional invoice records and a clear explanation of the business process. Open the repository, read the purpose and week 1 mission, and start a learning log. Use the teaching-agent prompt to keep assistance bounded. The Academy app is not a prerequisite for this first week.
+The first result is an implementation package for a fictional Zoho receivables dashboard. It includes the opportunity choice, process map, business rules, build prompt, review checks and handover requirements. Codex or Claude Code will write the application later. The learner owns what the system should do and how its result will be proved.
 
 ### Day by day at 20 hours
 
 | Day | Hours | Work and visible result |
 | --- | --- | --- |
-| Monday | 2 | Set up an editor and Python; locate the project folder; run a hello-world script; record the launch command |
-| Tuesday | 2 | Study variables/functions; create ten fictional invoices as dictionaries; print a count |
-| Wednesday | 2 | Explain invoice, payment and outstanding balance; write a one-page process map with owners and exceptions |
-| Thursday | 2 | Read a traceback; fix a path error and a missing field; record cause and repair |
-| Friday | 2 | Use Git status, diff and commit; explain what a commit captures and check no credentials are staged |
-| Saturday | 5 | Build and revise the invoice summary script; make outputs understandable; run it from a fresh terminal |
-| Sunday | 5 | Rebuild a small part without copying; explain each line; complete the transfer task; write the next-session note |
+| Monday | 2 | Learn ten automation patterns and explain the trigger, result and main failure for three examples |
+| Tuesday | 2 | Score eight accounting workflows by frequency, time cost, data readiness, rule clarity and risk |
+| Wednesday | 2 | Map the current receivables reporting process, owners, handoffs and common failures |
+| Thursday | 2 | Design the improved process with source links, visible errors and recovery steps |
+| Friday | 2 | Complete the implementation brief: users, inputs, rules, permissions, outputs and limits |
+| Saturday | 5 | Write the build prompt, ask a coding agent for a plan and review the plan against the brief |
+| Sunday | 5 | Use the review and failure prompts, record findings and prepare the handover checklist and next-session note |
 
-Use the 3/11/3/2/1 weekly allocation to balance these sessions across learning, building, testing, explanation and documentation. If setup consumes the first two days, move later work rather than skipping the explanation and debugging gate. Ask the tutor to explain an error, then perform the edit yourself.
+Use the 3/11/3/2/1 weekly allocation across learning, implementation direction, testing, explanation and documentation. The coding agent may make the files and code. The learner must write or approve the workflow, business rules, prompt, acceptance tests and release decision.
 
 ### Session record
 
-Record date, mission, minutes spent, intended result, actual result, artifact path, failing/passing checks, hints used, one concept explained in your own words, current blocker and next action. State whether evidence came from a mock, a test account or a live read-only source. A screenshot alone is not proof that the underlying calculation is correct.
+Record date, mission, minutes spent, intended result, actual result, artifacts, prompts, decisions, failing and passing checks, help used, current blocker and next action. State whether evidence came from a mock, a test account or a live read-only source. A screenshot alone is not proof that the underlying calculation is correct.
 
 ### Graduation portfolio
 

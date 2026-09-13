@@ -2,17 +2,17 @@
 
 ## 1 Purpose and recommended route
 
-Prepare for an operations automation role by learning to discover a process, connect its systems, calculate trustworthy metrics, build a usable dashboard, and add carefully bounded AI assistance. The recommended programme is 20 weeks at 20 hours per week, or 400 hours. It starts from beginner coding ability and produces a portfolio of working accounting operations projects. Progress depends on demonstrated skill; the dates are targets, not a guarantee of job readiness.
+Prepare for an operations automation role by learning to discover a process, choose the right automation, direct Codex or Claude Code, verify trustworthy metrics, review a usable dashboard, and add carefully bounded AI assistance. The recommended programme is 20 weeks at 20 hours per week, or 400 hours. It starts from beginner technical ability and produces a portfolio of working accounting operations projects. Progress depends on demonstrated skill; the dates are targets, not a guarantee of job readiness.
 
-The central project is LedgerOps Academy, a practice environment with fictional accounting clients, realistic API failures, graded tasks and portable teaching-agent context. The app will supply the business environment and feedback. The learner will implement the automations in a separate workspace and explain the result. This document specifies the app for a later build; the present release contains the research, curriculum and implementation plan.
+The central project is LedgerOps Academy, a practice environment with fictional accounting clients, realistic API failures, graded tasks and portable teaching-agent context. The app will supply the business environment and feedback. The learner will write the workflow, brief, prompts and acceptance tests; Codex or Claude Code will implement the automations in a separate workspace. The learner then reviews, explains and operates the result. This document specifies the app for a later build; the present release contains the research, curriculum and implementation plan.
 
-Start with Python and SQL, deliver a local dashboard by week 6, connect Zoho Books by week 8, and complete a resilient integration by week 10. Introduce language models in week 12 and tool-using agents in week 14. Finish with accounting exception workflows, a QuickBooks adaptation and a portfolio demonstration. Each project should answer a business question before it introduces another technology.
+Start with automation choices, process maps and implementation prompts. Use Codex or Claude Code to build the Python, SQL and web components. Deliver a local dashboard by week 6, connect Zoho Books by week 8, and complete a resilient integration by week 10. Introduce language models in week 12 and tool-using agents in week 14. Finish with accounting exception workflows, a QuickBooks adaptation and a portfolio demonstration. Each project should answer a business question before it introduces another technology.
 
 ### What performing well means
 
 Success in the role means fewer manual touches, reliable information, faster exception resolution and systems that colleagues can operate after handover. A useful automation includes an owner, input and output contracts, a clear exception queue, a measurable baseline, logs, recovery instructions and a support plan. A convincing demo without these elements is incomplete.
 
-By the end, independently explain an API request, diagnose an authentication or pagination failure, write a SQL join without double-counting, reconcile dashboard totals to source records, and demonstrate an agent declining an unsupported action. Present three polished case studies rather than a large collection of unfinished tutorials.
+By the end, independently define an API data need, direct a coding agent through an authentication or pagination failure, state how a join could double-count, reconcile dashboard totals to source records, and demonstrate an agent declining an unsupported action. Present three polished case studies rather than a large collection of unfinished tutorials.
 
 ## 2 Target company research and implications
 
@@ -80,7 +80,7 @@ Prioritise with estimated net hours saved per month, frequency, data readiness a
 
 ## 5 Learning stack and resource route
 
-Use one primary programming language first. Python handles data transformations, API clients, validation, testing and initial dashboards. Add SQL for relational data and later read enough JavaScript to understand a custom web interface. The learner need not become a full frontend engineer before contributing useful automations.
+Use Codex or Claude Code as the implementation partner. Python remains the default build language for data work and APIs, SQL handles stored data and metrics, and web tools provide the interface. The learner studies the purpose, inputs, outputs, risks and checks rather than memorising syntax. Read code only when it helps review a decision or investigate a failure.
 
 The core learning resources are selected sections of CS50 Python and CS50 SQL, supported by OpenStax accounting concepts.[^25][^26][^27] These are references for the weekly labs, not a requirement to finish every course and assignment within the 400-hour plan. Follow each provider's academic honesty rules when doing its own graded exercises.
 
@@ -90,9 +90,9 @@ After Python and APIs, use Hugging Face's Agents Course for agent concepts and s
 
 | Learn | Why it matters | Where and how |
 | --- | --- | --- |
-| Python and Git | Read, change and debug automation code | CS50 Python selections; implement each concept against fictional invoices |
+| Python and Git | Direct and review automation changes | Ask the coding agent to explain important files, commands, tests and risks in plain English |
 | Accounting data | Avoid plausible but incorrect dashboards | OpenStax basics; narrate invoice, payment, bill, credit and journal flows |
-| SQL | Join systems and calculate repeatable metrics | CS50 SQL querying, relating, designing and viewing; use a small client ledger |
+| SQL | Join systems and calculate repeatable metrics | Define the grain, keys, formulas and expected totals; have the coding agent implement and test them |
 | Zoho Books and CRM | Fulfil the immediate API/dashboard goal | Official API references; start with one read-only resource per product |
 | Streamlit then FastAPI | Build a useful UI and a reliable service boundary | Official get-started guides; separate calculations from presentation |
 | Flow or n8n | Automate scheduled handoffs and routing | Choose one; reproduce the same workflow with a failure queue |
@@ -112,19 +112,19 @@ Schedule a short revisit after 1, 3, 7 and 14 days. This is the Academy's propos
 
 Each week has 20 hours using the stated weekly allocation. Resource numbers refer to the Sources section. Complete the gate before progressing to a dependent mission. All outputs below are planned learner deliverables, not files already implemented in this release.
 
-### Week 1 Understand the process and run your first script
+### Week 1 Choose and design an automation
 
-Learn: terminal and files, variables and functions, Git commits, invoice versus payment, process discovery. Resources: S25, S27.
+Learn: automation patterns, rules versus workflows versus agents, process discovery, implementation briefs, prompt flow and acceptance tests. Resources: S18, S21, S27.
 
-Build: Create a repository workspace, run a Python script and describe a fictional client-to-invoice-to-payment process. Enter ten fictional invoices as dictionaries with string amounts. Print the invoice count and a labelled summary. Draw the handoffs, owner and exception path.
+Build: Review ten accounting automation patterns and score eight possible workflows. Use the fictional Zoho receivables dashboard as the default case. Map the current process and the improved process. Write an implementation brief and a build, review, fix and handover prompt for Codex or Claude Code.
 
-Break and test: Change a file path, remove a required field and introduce a syntax error. Read each error and explain the smallest repair.
+Break and test: Remove the process owner, leave a metric undefined, mix currencies and omit the failed-sync path. Explain why each gap would make the implementation unsafe or hard to review.
 
-Submit: first_script.py, process-map.md, data-dictionary.md, learning-log.md.
+Submit: automation-opportunity-map.md, process-map.md, implementation-brief.md, prompt-pack.md, review-checklist.md and learning-log.md.
 
-Pass when: Run the script from a fresh terminal, explain every line, distinguish an invoice from cash received and make a meaningful Git commit.
+Pass when: The selected workflow has a clear trigger, user, inputs, rules, exceptions, output, permissions, tests, recovery path and owner. The build prompt gives a coding agent enough context to implement without guessing key business rules.
 
-Independent variation: Add a new fictional client and one new invoice without asking the tutor to write the change.
+Independent variation: Write a second brief for a missing-document workflow without copying the completed receivables brief.
 
 ### Week 2 Control flow and reliable money calculations
 
@@ -610,25 +610,25 @@ Use local single-user storage first; select hosting only when deployment is need
 
 ## 13 Start this week
 
-The first result is intentionally small: a script that reads fictional invoice records and a clear explanation of the business process. Open the repository, read the purpose and week 1 mission, and start a learning log. Use the teaching-agent prompt to keep assistance bounded. The Academy app is not a prerequisite for this first week.
+The first result is an implementation package for a fictional Zoho receivables dashboard. It includes the opportunity choice, process map, business rules, build prompt, review checks and handover requirements. Codex or Claude Code will write the application later. The learner owns what the system should do and how its result will be proved.
 
 ### Day by day at 20 hours
 
 | Day | Hours | Work and visible result |
 | --- | --- | --- |
-| Monday | 2 | Set up an editor and Python; locate the project folder; run a hello-world script; record the launch command |
-| Tuesday | 2 | Study variables/functions; create ten fictional invoices as dictionaries; print a count |
-| Wednesday | 2 | Explain invoice, payment and outstanding balance; write a one-page process map with owners and exceptions |
-| Thursday | 2 | Read a traceback; fix a path error and a missing field; record cause and repair |
-| Friday | 2 | Use Git status, diff and commit; explain what a commit captures and check no credentials are staged |
-| Saturday | 5 | Build and revise the invoice summary script; make outputs understandable; run it from a fresh terminal |
-| Sunday | 5 | Rebuild a small part without copying; explain each line; complete the transfer task; write the next-session note |
+| Monday | 2 | Learn ten automation patterns and explain the trigger, result and main failure for three examples |
+| Tuesday | 2 | Score eight accounting workflows by frequency, time cost, data readiness, rule clarity and risk |
+| Wednesday | 2 | Map the current receivables reporting process, owners, handoffs and common failures |
+| Thursday | 2 | Design the improved process with source links, visible errors and recovery steps |
+| Friday | 2 | Complete the implementation brief: users, inputs, rules, permissions, outputs and limits |
+| Saturday | 5 | Write the build prompt, ask a coding agent for a plan and review the plan against the brief |
+| Sunday | 5 | Use the review and failure prompts, record findings and prepare the handover checklist and next-session note |
 
-Use the 3/11/3/2/1 weekly allocation to balance these sessions across learning, building, testing, explanation and documentation. If setup consumes the first two days, move later work rather than skipping the explanation and debugging gate. Ask the tutor to explain an error, then perform the edit yourself.
+Use the 3/11/3/2/1 weekly allocation across learning, implementation direction, testing, explanation and documentation. The coding agent may make the files and code. The learner must write or approve the workflow, business rules, prompt, acceptance tests and release decision.
 
 ### Session record
 
-Record date, mission, minutes spent, intended result, actual result, artifact path, failing/passing checks, hints used, one concept explained in your own words, current blocker and next action. State whether evidence came from a mock, a test account or a live read-only source. A screenshot alone is not proof that the underlying calculation is correct.
+Record date, mission, minutes spent, intended result, actual result, artifacts, prompts, decisions, failing and passing checks, help used, current blocker and next action. State whether evidence came from a mock, a test account or a live read-only source. A screenshot alone is not proof that the underlying calculation is correct.
 
 ### Graduation portfolio
 

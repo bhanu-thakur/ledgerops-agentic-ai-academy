@@ -1,38 +1,50 @@
-# Week 1: first script and process map
+# Week 1: choose and design an automation
 
-This week uses fictional data only. You will learn how to run a Python file, store simple values, describe the invoice-to-payment process and read basic errors.
+You are learning to lead implementation with Codex or Claude Code. You do not need to write the code yourself.
 
-## First task: run and change a small script
+## Week 1 result
 
-Business purpose: an automation is useful only when another person can run it and understand its output.
+By the end of the week, you will be able to:
 
-From the repository folder, run:
+1. Explain ten useful accounting automation patterns.
+2. Choose a good first use case.
+3. Map the current process and the improved process.
+4. Write a build prompt that another coding agent can follow.
+5. Review the result using clear tests, failure cases and a handover checklist.
 
-```bash
-python3 practice/week-01/first_script.py
-```
+Your practice case is a **Zoho receivables dashboard using fictional data**. It will show open invoices, overdue invoices, aging groups and the source rows behind each number. A coding agent will build it later from your brief.
 
-The first run should show:
+## Twenty-hour plan
 
-```text
-LedgerOps Academy
-Week: 1
-```
+| Session | Hours | Result |
+| --- | ---: | --- |
+| Learn what can be automated | 3 | Read and explain the capability map |
+| Find the best opportunity | 3 | Score and rank possible workflows |
+| Map the chosen process | 3 | Current and improved process maps |
+| Write the implementation brief | 3 | Inputs, rules, output, access and limits |
+| Write and improve the build prompt | 3 | Prompt ready for Codex or Claude Code |
+| Review a first build | 3 | Acceptance tests and failure checks |
+| Explain and hand over | 2 | Short demo plan, runbook and next action |
 
-Then open `first_script.py` and make these two changes yourself:
+## First task
 
-1. Create a variable named `learner` containing your name or initials.
-2. Print `Learner:` followed by that variable.
+Read `capability-map.md`. Then open `automation-opportunity-map.md` and study the eight example workflows.
 
-Run the file again. A successful result has three labelled lines and no error.
+For each workflow, write one sentence explaining:
 
-Do not copy a finished solution from a tutor. If the command fails, save the full error and ask for one hint.
+- what starts it;
+- what useful result it creates;
+- what could go wrong.
 
-## Week 1 files
+Do this before asking an agent to build anything. A clear workflow is the input to a good build prompt.
 
-- `first_script.py`: code you will grow into the invoice summary.
-- `process-map.md`: your invoice-to-payment process map.
-- `data-dictionary.md`: your explanation of each data field.
-- `learning-log.md`: your work, checks, errors, hints and next action.
+## Files you will produce
 
-The later steps are listed in the main curriculum. Complete one task at a time.
+- `automation-opportunity-map.md`
+- `process-map.md`
+- `implementation-brief.md`
+- `prompt-pack.md`
+- `review-checklist.md`
+- `learning-log.md`
+
+Week 1 passes when the chosen use case has a clear owner, input, rules, exceptions, output, permissions, acceptance tests, recovery plan and build prompt.

@@ -7,6 +7,6 @@
   "attempts": [],
   "skills": {},
   "review_schedule": [],
-  "next_action": "Run practice/week-01/first_script.py, add a learner variable and print a third labelled line.",
-  "evidence_note": "The Week 1 practice workspace is ready. No learner output has been assessed yet, and no week is marked complete."
+  "next_action": "Read practice/week-01/capability-map.md and complete the explanation column in automation-opportunity-map.md.",
+  "evidence_note": "Week 1 now uses AI-assisted implementation mode. The learner directs Codex or Claude Code through briefs, prompts and checks; no programming-syntax lesson is required. No learner output has been assessed yet."
 }
