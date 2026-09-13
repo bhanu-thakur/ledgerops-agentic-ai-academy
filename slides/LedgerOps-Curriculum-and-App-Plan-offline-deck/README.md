@@ -1,6 +1,6 @@
 # LedgerOps curriculum slideshow
 
-This is a self-contained SlideX HTML presentation with 45 slides. It summarizes the 20-week, 400-hour curriculum, Zoho integration architecture, agent controls, learning app plan, portfolio projects and research register.
+This is a self-contained SlideX HTML presentation with 30 slides. It explains the 20-week, 400-hour curriculum, Zoho dashboard plan, agent controls, learning app plan, portfolio projects and research register in plain English.
 
 To view it locally, start a static server in this folder:
 

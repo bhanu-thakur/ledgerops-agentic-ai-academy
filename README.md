@@ -15,7 +15,7 @@ Designed around Zoho API dashboards, reliable integrations, accounting exception
 
 ## Slideshow
 
-The [45-slide offline presentation](slides/LedgerOps-Curriculum-and-App-Plan-offline-deck/index.html) turns the curriculum and implementation plan into a guided briefing. Download the packaged ZIP from the `slides/` folder for a portable copy. The package includes its browser audit, rendered slides, montage and validation report.
+The [30-slide offline presentation](slides/LedgerOps-Curriculum-and-App-Plan-offline-deck/index.html) explains the curriculum and app plan in plain English. Download the packaged ZIP from the `slides/` folder for a portable copy. The package includes its browser audit, rendered slides, montage and validation report.
 
 ## The practical route
 

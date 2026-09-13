@@ -2,10 +2,10 @@ SlideX browser audit
 Run date: 13 September 2026
 Viewport: 1600 x 900
 
-Slides: 45
+Slides: 30
 Hard failures: 0
 Soft warnings: 0
-Result: all slides passed
+Result: all 30 slides passed
 
 Contrast checks:
 - text-3 on paper: 5.04, pass
