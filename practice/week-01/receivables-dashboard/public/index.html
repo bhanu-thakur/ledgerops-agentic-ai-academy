@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receivables Operations Dashboard - Zoho Books</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-brand">
+        <div class="brand-badge">ACCRUAL OPS</div>
+        <h1>Receivables Operations Dashboard</h1>
+        <p class="brand-caption">Fictional Zoho Books Ingestion &bullet; Deterministic Aging &bullet; Strict Audit Lineage</p>
+      </div>
+
+      <div class="header-controls">
+        <div class="control-group">
+          <label for="reportDateInput">Report As-Of Date</label>
+          <input type="date" id="reportDateInput" value="2026-08-31" class="input-date">
+        </div>
+
+        <div class="control-group">
+          <label for="modeSelect">Data Source</label>
+          <select id="modeSelect" class="input-select" style="font-weight: 600; color: #60a5fa;">
+            <option value="mock" selected>Mock (Teaching Data)</option>
+            <option value="live">Live Zoho Books (Learning - 60088191853)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="currencySelect">Currency</label>
+          <select id="currencySelect" class="input-select">
+            <option value="USD" selected>USD ($)</option>
+            <option value="INR">INR (₹)</option>
+          </select>
+        </div>
+
+        <div class="control-actions">
+          <button id="btnRefresh" class="btn btn-primary">
+            <span class="btn-icon">↻</span> Refresh
+          </button>
+          <button id="btnSimulateFail" class="btn btn-danger-outline" title="Simulate Zoho API failure to test stale fallback">
+            <span class="btn-icon">⚡</span> Simulate Failure
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stale Data Alert Banner -->
+    <div id="staleAlertBanner" class="alert-banner alert-warning hidden" role="alert">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-content">
+        <strong>STALE DATA WARNING:</strong>
+        <span id="staleAlertMessage">The latest refresh attempt failed. Displaying the last verified snapshot.</span>
+        <span class="alert-timestamp" id="staleAlertTimestamp"></span>
+      </div>
+    </div>
+
+    <!-- Sync Metadata Strip -->
+    <div class="sync-strip">
+      <div class="sync-meta-item">
+        <span class="meta-label">Sync Status:</span>
+        <span id="syncStatusBadge" class="status-pill status-healthy">Live Snapshot</span>
+      </div>
+      <div class="sync-meta-item">
+        <span class="meta-label">Last Successful Sync:</span>
+        <span id="lastSyncTime" class="meta-value font-mono">--</span>
+      </div>
+      <div class="sync-meta-item">
+        <span class="meta-label">Last Attempt:</span>
+        <span id="lastAttemptTime" class="meta-value font-mono">--</span>
+      </div>
+      <div class="sync-meta-item">
+        <span class="meta-label">Exceptions Quarantined:</span>
+        <span id="exceptionCountBadge" class="badge-count">0</span>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      <!-- Headline KPI Cards -->
+      <section class="kpi-grid">
+        <div class="kpi-card clickable" id="kpiOpenCard" data-filter="open" tabindex="0" title="Click to view all open invoices">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Open AR</span>
+            <span class="kpi-tag tag-blue">Open</span>
+          </div>
+          <div class="kpi-value" id="valOpenAmount">$0.00</div>
+          <div class="kpi-footer">
+            <span id="valOpenCount">0 invoices</span> &bullet; <span class="drilldown-hint">Click to inspect</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-danger clickable" id="kpiOverdueCard" data-filter="overdue" tabindex="0" title="Click to view overdue invoices">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Overdue AR</span>
+            <span class="kpi-tag tag-red">Past Due</span>
+          </div>
+          <div class="kpi-value" id="valOverdueAmount">$0.00</div>
+          <div class="kpi-footer">
+            <span id="valOverdueCount">0 invoices</span> &bullet; <span class="drilldown-hint">Click to inspect</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success clickable" id="kpiCurrentCard" data-filter="current" tabindex="0" title="Click to view current invoices">
+          <div class="kpi-header">
+            <span class="kpi-title">Current / Due Today</span>
+            <span class="kpi-tag tag-green">Current</span>
+          </div>
+          <div class="kpi-value" id="valCurrentAmount">$0.00</div>
+          <div class="kpi-footer">
+            <span id="valCurrentCount">0 invoices</span> &bullet; <span class="drilldown-hint">Click to inspect</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Overdue Percentage</span>
+            <span class="kpi-tag tag-purple">Aging Ratio</span>
+          </div>
+          <div class="kpi-value" id="valOverdueRatio">0.0%</div>
+          <div class="kpi-footer">
+            <span>Overdue balance / Total open</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aging Buckets Section -->
+      <section class="aging-section">
+        <div class="section-header">
+          <h2>Accounts Receivable Aging Breakdown</h2>
+          <span class="section-subtitle">Click any bucket to isolate contributing source invoices</span>
+        </div>
+
+        <div class="aging-grid">
+          <div class="aging-card clickable" id="bucket-current" data-filter="current">
+            <div class="aging-bucket-label">Current / Due Today</div>
+            <div class="aging-bucket-amount" id="bucket-amount-current">$0.00</div>
+            <div class="aging-bucket-meta">
+              <span id="bucket-count-current">0 invoices</span>
+            </div>
+            <div class="aging-bar-container">
+              <div class="aging-bar bar-current" id="bucket-bar-current" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="aging-card clickable" id="bucket-1_30" data-filter="1_30">
+            <div class="aging-bucket-label">1–30 Days</div>
+            <div class="aging-bucket-amount" id="bucket-amount-1_30">$0.00</div>
+            <div class="aging-bucket-meta">
+              <span id="bucket-count-1_30">0 invoices</span>
+            </div>
+            <div class="aging-bar-container">
+              <div class="aging-bar bar-1_30" id="bucket-bar-1_30" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="aging-card clickable" id="bucket-31_60" data-filter="31_60">
+            <div class="aging-bucket-label">31–60 Days</div>
+            <div class="aging-bucket-amount" id="bucket-amount-31_60">$0.00</div>
+            <div class="aging-bucket-meta">
+              <span id="bucket-count-31_60">0 invoices</span>
+            </div>
+            <div class="aging-bar-container">
+              <div class="aging-bar bar-31_60" id="bucket-bar-31_60" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="aging-card clickable" id="bucket-61_90" data-filter="61_90">
+            <div class="aging-bucket-label">61–90 Days</div>
+            <div class="aging-bucket-amount" id="bucket-amount-61_90">$0.00</div>
+            <div class="aging-bucket-meta">
+              <span id="bucket-count-61_90">0 invoices</span>
+            </div>
+            <div class="aging-bar-container">
+              <div class="aging-bar bar-61_90" id="bucket-bar-61_90" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="aging-card clickable" id="bucket-over_90" data-filter="over_90">
+            <div class="aging-bucket-label">Over 90 Days</div>
+            <div class="aging-bucket-amount" id="bucket-amount-over_90">$0.00</div>
+            <div class="aging-bucket-meta">
+              <span id="bucket-count-over_90">0 invoices</span>
+            </div>
+            <div class="aging-bar-container">
+              <div class="aging-bar bar-over_90" id="bucket-bar-over_90" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Source Lineage Table -->
+      <section class="table-section">
+        <div class="table-header-row">
+          <div class="table-title-wrap">
+            <h2>Contributing Source Invoices</h2>
+            <div class="active-filter-badge" id="activeFilterBadge">
+              Showing: <strong id="activeFilterText">All Invoices</strong>
+              <button id="btnClearFilter" class="btn-clear hidden" title="Clear filter">✕ Reset</button>
+            </div>
+          </div>
+          <div class="table-summary-stat">
+            <span id="tableSummaryCount">0 records matching</span>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="invoicesTable">
+            <thead>
+              <tr>
+                <th>Source Invoice ID</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th class="text-right">Total</th>
+                <th class="text-right">Open Balance</th>
+                <th class="text-center">Days Overdue</th>
+                <th>Aging Group</th>
+              </tr>
+            </thead>
+            <tbody id="invoicesTableBody">
+              <tr>
+                <td colspan="10" class="text-center text-muted">Loading invoice records...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Quarantined Exceptions Section -->
+      <section class="exceptions-section">
+        <div class="section-header">
+          <div class="exception-title-row">
+            <h2>Data Quality & Quarantined Exceptions</h2>
+            <span class="badge-quarantine" id="exceptionsBadge">0 Flagged</span>
+          </div>
+          <span class="section-subtitle">Invalid or malformed records automatically excluded from financial metrics</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table table-exceptions" id="exceptionsTable">
+            <thead>
+              <tr>
+                <th>Row #</th>
+                <th>Invoice ID</th>
+                <th>Validation Failures</th>
+                <th>Raw Record Preview</th>
+              </tr>
+            </thead>
+            <tbody id="exceptionsTableBody">
+              <tr>
+                <td colspan="4" class="text-center text-muted">No validation exceptions detected.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>LedgerOps Agentic AI Academy &bullet; Week 1 Fictional Receivables Operations Tool</p>
+      <p class="footer-sub">Read-only simulation &bullet; Zero accounting writes &bullet; Deterministic minor-unit arithmetic</p>
+    </footer>
+  </div>
+
+  <!-- Modal for Raw Invoice Inspection -->
+  <div id="invoiceModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">Invoice Details</h3>
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

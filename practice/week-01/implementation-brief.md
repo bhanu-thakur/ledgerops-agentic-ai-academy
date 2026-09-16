@@ -8,9 +8,9 @@ Build a local dashboard that shows open invoices, overdue invoices and aging gro
 
 ## Users and decisions
 
-- Main user:
-- Decision they need to make:
-- How often they need it:
+- Main user: Finance Operations Lead / Accounts Receivable Specialist
+- Decision they need to make: Which past-due customers require immediate collection follow-up, which invoices are at risk, and which specific source records comprise open/overdue balances.
+- How often they need it: Daily operational review and weekly close reconciliation.
 
 ## Inputs
 

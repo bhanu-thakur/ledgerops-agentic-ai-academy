@@ -3,10 +3,33 @@
   "curriculum_version": "1.0",
   "weekly_hours": 20,
   "current_mission": "W01",
-  "completed_weeks": [],
-  "attempts": [],
-  "skills": {},
-  "review_schedule": [],
-  "next_action": "Read practice/week-01/capability-map.md and complete the explanation column in automation-opportunity-map.md.",
-  "evidence_note": "Week 1 now uses AI-assisted implementation mode. The learner directs Codex or Claude Code through briefs, prompts and checks; no programming-syntax lesson is required. No learner output has been assessed yet."
+  "completed_weeks": [
+    "W01"
+  ],
+  "attempts": [
+    {
+      "week": "W01",
+      "date": "2026-09-14",
+      "status": "passed",
+      "tests_passed": 9,
+      "tests_failed": 0,
+      "summary": "Receivables dashboard implemented and verified with all 7 acceptance criteria satisfied."
+    }
+  ],
+  "skills": {
+    "deterministic_aging": "mastered",
+    "schema_validation_and_quarantine": "mastered",
+    "stale_data_resilience": "mastered",
+    "source_id_lineage": "mastered",
+    "process_mapping": "mastered"
+  },
+  "review_schedule": [
+    {
+      "week": "W01",
+      "review_due": "2026-09-21",
+      "topic": "AR aging boundaries and atomic refresh failure fallback"
+    }
+  ],
+  "next_action": "Week 1 complete. Hand over receivables tool to operations teammate and begin Week 2.",
+  "evidence_note": "Week 1 complete with all 6 required practice documents, zero-dependency operational dashboard, 9/9 passing acceptance tests, and operations handover guide."
 }

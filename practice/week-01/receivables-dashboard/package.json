@@ -1,0 +1,20 @@
+{
+  "name": "zoho-receivables-dashboard",
+  "version": "1.0.0",
+  "description": "Fictional Zoho Books receivables dashboard with deterministic aging and audit lineage",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/acceptance.test.js"
+  },
+  "keywords": [
+    "accounting",
+    "receivables",
+    "zoho-books",
+    "ar-aging",
+    "audit-trail"
+  ],
+  "author": "LedgerOps Agentic AI Academy",
+  "license": "ISC"
+}

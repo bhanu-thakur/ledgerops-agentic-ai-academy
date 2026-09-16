@@ -1,0 +1,10 @@
+{
+  "name": "ledgerops-agentic-ai-academy",
+  "version": "1.0.0",
+  "description": "LedgerOps Agentic AI Academy - Practice Code and Automation",
+  "type": "module",
+  "scripts": {
+    "start": "npm --prefix zoho-receivables-dashboard start",
+    "test": "npm --prefix zoho-receivables-dashboard test"
+  }
+}

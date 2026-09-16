@@ -1,0 +1,165 @@
+[
+  {
+    "invoice_id": "INV-A",
+    "customer_id": "CUST-001",
+    "customer_name": "Acme Industrial Supplies",
+    "date": "2026-07-01",
+    "due_date": "2026-08-01",
+    "status": "issued",
+    "currency": "USD",
+    "total": 1000.00,
+    "balance": 600.00
+  },
+  {
+    "invoice_id": "INV-B",
+    "customer_id": "CUST-002",
+    "customer_name": "Beta Logistical Services",
+    "date": "2026-08-05",
+    "due_date": "2026-09-05",
+    "status": "sent",
+    "currency": "USD",
+    "total": 500.00,
+    "balance": 500.00
+  },
+  {
+    "invoice_id": "INV-C",
+    "customer_id": "CUST-003",
+    "customer_name": "Gamma Consulting Group",
+    "date": "2026-06-15",
+    "due_date": "2026-07-15",
+    "status": "paid",
+    "currency": "USD",
+    "total": 800.00,
+    "balance": 0.00
+  },
+  {
+    "invoice_id": "INV-D",
+    "customer_id": "CUST-004",
+    "customer_name": "Delta Design Works",
+    "date": "2026-07-15",
+    "due_date": "2026-08-15",
+    "status": "draft",
+    "currency": "USD",
+    "total": 300.00,
+    "balance": 300.00
+  },
+  {
+    "invoice_id": "INV-E-BOUND",
+    "customer_id": "CUST-005",
+    "customer_name": "Echo Media Agency",
+    "date": "2026-08-01",
+    "due_date": "2026-08-31",
+    "status": "sent",
+    "currency": "USD",
+    "total": 250.00,
+    "balance": 250.00
+  },
+  {
+    "invoice_id": "INV-F-VOID",
+    "customer_id": "CUST-006",
+    "customer_name": "Foxtrot Solutions",
+    "date": "2026-07-10",
+    "due_date": "2026-08-10",
+    "status": "void",
+    "currency": "USD",
+    "total": 450.00,
+    "balance": 450.00
+  },
+  {
+    "invoice_id": "INV-G-AGING-31-60",
+    "customer_id": "CUST-007",
+    "customer_name": "Golf Distribution",
+    "date": "2026-06-25",
+    "due_date": "2026-07-25",
+    "status": "sent",
+    "currency": "USD",
+    "total": 750.00,
+    "balance": 750.00
+  },
+  {
+    "invoice_id": "INV-H-AGING-61-90",
+    "customer_id": "CUST-008",
+    "customer_name": "Hotel Warehousing",
+    "date": "2026-05-20",
+    "due_date": "2026-06-20",
+    "status": "sent",
+    "currency": "USD",
+    "total": 920.00,
+    "balance": 920.00
+  },
+  {
+    "invoice_id": "INV-I-AGING-91-PLUS",
+    "customer_id": "CUST-009",
+    "customer_name": "India Tech Enterprises",
+    "date": "2026-04-10",
+    "due_date": "2026-05-10",
+    "status": "sent",
+    "currency": "USD",
+    "total": 1400.00,
+    "balance": 1400.00
+  },
+  {
+    "invoice_id": "INV-INR-01",
+    "customer_id": "CUST-IN-101",
+    "customer_name": "Zenith Infotech Mumbai",
+    "date": "2026-08-01",
+    "due_date": "2026-08-20",
+    "status": "issued",
+    "currency": "INR",
+    "total": 50000.00,
+    "balance": 50000.00
+  },
+  {
+    "invoice_id": "INV-INR-02",
+    "customer_id": "CUST-IN-102",
+    "customer_name": "Sahyadri Logistics Pune",
+    "date": "2026-08-15",
+    "due_date": "2026-09-15",
+    "status": "sent",
+    "currency": "INR",
+    "total": 25000.00,
+    "balance": 25000.00
+  },
+  {
+    "invoice_id": "ERR-NO-CUST-ID",
+    "customer_name": "Ghost Client Corp",
+    "date": "2026-08-01",
+    "due_date": "2026-08-20",
+    "status": "sent",
+    "currency": "USD",
+    "total": 120.00,
+    "balance": 120.00
+  },
+  {
+    "invoice_id": "ERR-BAD-AMOUNT",
+    "customer_id": "CUST-998",
+    "customer_name": "Malformed Number Ltd",
+    "date": "2026-08-01",
+    "due_date": "2026-08-20",
+    "status": "sent",
+    "currency": "USD",
+    "total": "one-thousand",
+    "balance": "six-hundred"
+  },
+  {
+    "invoice_id": "ERR-NO-CURRENCY",
+    "customer_id": "CUST-997",
+    "customer_name": "Currency Amnesia Inc",
+    "date": "2026-08-01",
+    "due_date": "2026-08-20",
+    "status": "sent",
+    "total": 350.00,
+    "balance": 350.00
+  },
+  {
+    "invoice_id": "ERR-BAD-DATE",
+    "customer_id": "CUST-996",
+    "customer_name": "Invalid Date Partners",
+    "date": "invalid-issue-date",
+    "due_date": "invalid-due-date",
+    "status": "sent",
+    "currency": "USD",
+    "total": 500.00,
+    "balance": 500.00
+  }
+]

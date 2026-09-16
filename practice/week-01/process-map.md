@@ -8,10 +8,10 @@ Which invoices are open, which are overdue, and which source records make up eac
 
 | Step | Person or system | Input | Action | Output | Common problem |
 | --- | --- | --- | --- | --- | --- |
-| 1 |  |  |  |  |  |
-| 2 |  |  |  |  |  |
-| 3 |  |  |  |  |  |
-| 4 |  |  |  |  |  |
+| 1 | AR Specialist | Zoho Books UI | Manually export invoices to CSV | Raw spreadsheets | Export cuts off or misses recent credit updates |
+| 2 | AR Specialist | Spreadsheet | Manually filter statuses and calculate aging formulas | Static summary sheet | Human formula error; USD & INR mixed; drafts included |
+| 3 | Finance Lead | Static sheet | Review totals and ask questions via email | Ad-hoc email threads | Headline totals cannot open source invoice IDs |
+| 4 | Operator | Email threads | Manually cross-check invoice IDs in Zoho Books | Unverified notes | Out-of-date sheet versions lead to disputed collections |
 
 ## Improved process
 
@@ -25,9 +25,9 @@ Which invoices are open, which are overdue, and which source records make up eac
 
 ## Owner and success measure
 
-- Process owner:
-- Dashboard user:
-- Data owner:
-- Baseline time or problem:
-- Expected improvement:
-- Measure after the pilot:
+- Process owner: Head of Accounting Operations
+- Dashboard user: Accounts Receivable Specialist and Billing Leads
+- Data owner: Zoho Books Systems Administrator
+- Baseline time or problem: 45 minutes daily spent exporting spreadsheets, fixing broken formula filters, and cross-checking currencies.
+- Expected improvement: Zero manual spreadsheet manipulation; instant deterministic aging breakdown with full source ID drilldown.
+- Measure after the pilot: Daily receivables review time reduced from 45 minutes to under 5 minutes, with zero multi-currency mixing errors.
