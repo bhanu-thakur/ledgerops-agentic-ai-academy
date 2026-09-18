@@ -9,14 +9,38 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PUBLIC_DIR = path.resolve(__dirname, '../public');
 
-// Automatically load .env if present
-if (typeof process.loadEnvFile === 'function') {
-  try {
-    process.loadEnvFile(path.resolve(__dirname, '../.env'));
-  } catch {
-    // ignore
+// Robust .env loader
+function loadEnv() {
+  const possiblePaths = [
+    path.resolve(__dirname, '../.env'),
+    path.resolve(process.cwd(), '.env'),
+    path.resolve(process.cwd(), 'zoho-receivables-dashboard/.env'),
+    path.resolve(process.cwd(), 'practice/week-01/receivables-dashboard/.env'),
+  ];
+
+  for (const envPath of possiblePaths) {
+    if (fs.existsSync(envPath)) {
+      try {
+        if (typeof process.loadEnvFile === 'function') {
+          process.loadEnvFile(envPath);
+        } else {
+          const content = fs.readFileSync(envPath, 'utf8');
+          content.split('\n').forEach((line) => {
+            const trimmed = line.trim();
+            if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+              const [key, ...vals] = trimmed.split('=');
+              process.env[key.trim()] = vals.join('=').trim();
+            }
+          });
+        }
+        break;
+      } catch (err) {
+        // continue
+      }
+    }
   }
 }
+loadEnv();
 
 export function createServer(options = {}) {
   const syncService = options.syncService || new SyncService({
