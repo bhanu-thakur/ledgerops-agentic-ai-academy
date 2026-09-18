@@ -45,7 +45,7 @@ loadEnv();
 export function createServer(options = {}) {
   const syncService = options.syncService || new SyncService({
     fixturePath: options.fixturePath,
-    mode: options.mode || process.env.SYNC_MODE || 'mock',
+    mode: options.mode || process.env.SYNC_MODE || 'live',
   });
 
   // Perform initial synchronization asynchronously

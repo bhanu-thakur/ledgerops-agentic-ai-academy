@@ -15,9 +15,14 @@ const DEFAULT_FIXTURE_PATH = path.resolve(__dirname, '../data/sample-invoices.js
  */
 export class SyncService {
   constructor(options = {}) {
-    this.fixturePath = typeof options === 'string' ? options : (options.fixturePath || DEFAULT_FIXTURE_PATH);
+    if (typeof options === 'string') {
+      this.fixturePath = options;
+      this.mode = 'mock';
+    } else {
+      this.fixturePath = options.fixturePath || DEFAULT_FIXTURE_PATH;
+      this.mode = options.mode || process.env.SYNC_MODE || 'live';
+    }
     this.zohoClient = options.zohoClient || new ZohoBooksClient();
-    this.mode = options.mode || process.env.SYNC_MODE || (this.zohoClient.isConfigured() ? 'live' : 'mock');
 
     this.valid = [];
     this.exceptions = [];

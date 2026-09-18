@@ -4,7 +4,7 @@
 
 const state = {
   reportDate: '2026-08-31',
-  currency: 'USD',
+  currency: 'INR',
   activeFilter: null, // null/'all', 'open', 'overdue', 'current', or bucket key
   metricsData: null,
   exceptionsData: [],
@@ -13,7 +13,6 @@ const state = {
 
 // DOM Elements
 const reportDateInput = document.getElementById('reportDateInput');
-const modeSelect = document.getElementById('modeSelect');
 const currencySelect = document.getElementById('currencySelect');
 const btnRefresh = document.getElementById('btnRefresh');
 const btnSimulateFail = document.getElementById('btnSimulateFail');
@@ -131,17 +130,12 @@ async function loadStatus() {
 /**
  * Triggers refresh on server.
  */
-async function triggerRefresh(simulateFailure = false, mode = null) {
+async function triggerRefresh(simulateFailure = false) {
   try {
     btnRefresh.disabled = true;
     btnSimulateFail.disabled = true;
 
-    const payload = { simulate_failure: simulateFailure };
-    if (mode) {
-      payload.mode = mode;
-    } else if (modeSelect) {
-      payload.mode = modeSelect.value;
-    }
+    const payload = { simulate_failure: simulateFailure, mode: 'live' };
 
     const res = await fetch('/api/refresh', {
       method: 'POST',
@@ -167,10 +161,6 @@ function renderSyncStatus(status) {
   lastSyncTime.textContent = formatTimestamp(status.last_successful_sync);
   lastAttemptTime.textContent = formatTimestamp(status.last_attempt_time);
 
-  if (modeSelect && status.mode) {
-    modeSelect.value = status.mode;
-  }
-
   if (status.is_stale) {
     staleAlertBanner.classList.remove('hidden');
     staleAlertMessage.textContent = `${status.last_error || 'Upstream sync failure'}. Showing last good snapshot from ${formatTimestamp(status.last_successful_sync)}.`;
@@ -180,13 +170,8 @@ function renderSyncStatus(status) {
     syncStatusBadge.className = 'status-pill status-stale';
   } else {
     staleAlertBanner.classList.add('hidden');
-    if (status.mode === 'live') {
-      syncStatusBadge.textContent = 'Live Zoho Books (Connected)';
-      syncStatusBadge.className = 'status-pill status-healthy';
-    } else {
-      syncStatusBadge.textContent = 'Mock Snapshot (Teaching)';
-      syncStatusBadge.className = 'status-pill status-healthy';
-    }
+    syncStatusBadge.textContent = 'Live Zoho Books (Connected)';
+    syncStatusBadge.className = 'status-pill status-healthy';
   }
 
   exceptionCountBadge.textContent = status.exceptions_count || 0;
@@ -465,12 +450,6 @@ reportDateInput.addEventListener('change', (e) => {
   state.reportDate = e.target.value;
   loadMetrics();
 });
-
-if (modeSelect) {
-  modeSelect.addEventListener('change', (e) => {
-    triggerRefresh(false, e.target.value);
-  });
-}
 
 currencySelect.addEventListener('change', (e) => {
   state.currency = e.target.value;
